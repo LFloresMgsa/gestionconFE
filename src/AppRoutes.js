@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Dashboard from './views/Dashboard';
-import Catalogo from './views/Catalogo';
-import Videoteca from './views/Videoteca';
 
 import { Categorias } from './views/Categorias';
 import Login from './views/Login';
