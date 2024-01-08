@@ -15,12 +15,6 @@ import {
   ListItemText,
 } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SettingsOutlined from '@mui/icons-material/SettingsOutlined';
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import TranslateIcon from '@mui/icons-material/Translate';
-import Brightness4OutlinedIcon from '@mui/icons-material/Brightness4Outlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -28,7 +22,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { css, useTheme } from 'styled-components';
 import { styled } from '@mui/material/styles';
 import { store } from '../../../store';
-import { userService } from '../../../services';
+
 import { useDispatch } from 'react-redux';
 import { appThemes, appColors } from '../../../theme/AppThemes';
 import { AccountBoxOutlined } from '@mui/icons-material';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@mui/styles';
-import fondo from '../imagenes/manual.jpg'
+import fondo from '../imagenes/fondodos.png'
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 import { eventoService } from '../services/evento.service';
 import md5 from 'md5';
@@ -15,21 +15,22 @@ const useStyles = makeStyles(theme => ({
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
-
 		height: '91vh'
 	},
 	container: {
 		opacity: '1',
-		height: '70%',
+		height: '75%',
 
-		marginTop: 10,
+		marginTop: theme.spacing(10),
+		[theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
 			marginTop: 0,
 			width: '100%',
 			height: '100%'
-		
+		}
 	},
 	div: {
-		marginTop: 4,
+		
+		marginTop: theme.spacing(4),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center'
@@ -39,15 +40,15 @@ const useStyles = makeStyles(theme => ({
 
 
 	avatar: {
-		margin: 1,
-		backgroundColor: 'white'
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.primary.main
 	},
 	form: {
 		width: '100%',
-		marginTop: 1
+		marginTop: theme.spacing(1)
 	},
 	button: {
-		margin: 3
+		margin: theme.spacing(3, 0, 2)
 
 	}
 }))
@@ -171,11 +172,9 @@ const Login = () => {
 					<Grid container spacing={1}  >
 
 						<Grid item xs={12} lg={12} >
-
 							<Avatar className={classes.avatar}>
 								<LockOutlinedIcon />
 							</Avatar>
-
 						</Grid>
 						<Grid item xs={12} lg={12}>
 

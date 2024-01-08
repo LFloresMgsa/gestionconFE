@@ -1,6 +1,3 @@
-.home {
-    /* Otros estilos para tu componente principal */
-  }
   
   .image-container {
     display: flex;
@@ -9,18 +6,11 @@
     /* Otros estilos para el contenedor de la imagen, si es necesario */
   }
   
-  .image-container img {
-    /* Otros estilos para la imagen, si es necesario */
-  }
-  
   .prueba {
     margin-top: 15px;
     text-align : left;
     margin-left: 370px;
   }
   
-  /* .textodoc {
-    text-align: center;
 
-  } */
   

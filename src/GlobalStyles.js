@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-
+import { withStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -28,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
         overscroll-behavior: none;
         width: 100%;
         font-size: 0.85rem;
+        
         padding-right: 0px !important;
             overflow: auto !important;
     }

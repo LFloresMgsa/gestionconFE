@@ -16,7 +16,7 @@ const AppTopBar = (props) => {
 
   return (
 
-    <AppBar style={{ backgroundColor :theme.palette.sbAppBarYMenuBG?.main }}>
+    <AppBar style={{ backgroundColor :'#8b0000' }}>
       <Toolbar variant="dense" style={{ justifyContent: 'space-between' }}>
         <div className="toolbar-left">
           <div>
@@ -40,7 +40,7 @@ const AppTopBar = (props) => {
         </div>
 
         <div className="toolbar-left">
-        <Typography variant="h5" color="inherit" component="div">
+        <Typography variant="h5" color="white" component="div">
             Manual de Usuario - PDF
           </Typography>
         </div>
