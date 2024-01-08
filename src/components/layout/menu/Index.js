@@ -27,10 +27,12 @@ const StyledMenu = styled(Drawer)(
       width: ${state.width};
       margin-top: ${['xs', 'sm'].includes(viewport) ? '0px' : '50px'};
       justify-content: space-between;
+      background-color: #8b0000;
     }
 
     #menu-dev-info {
       text-align: center;
+      color:white;
     }
 
     #logo-and-timer {

@@ -85,7 +85,7 @@ const MeNavBarDisplay = (props) => {
 
 
   const [isLoged, setIsLoged] = useState(false);
-
+  const [username, setUsername] = useState("");
 
 
   const openMenu = Boolean(anchorEl);
@@ -98,12 +98,14 @@ const MeNavBarDisplay = (props) => {
   };
 
   const handleLogin = () => {
-
+    setIsLoged(true);
+    setUsername(currentUser.detail.username);
     window.location.href = "../login";
   };
 
   const handleLogout = () => {
-
+    setIsLoged(false);
+    setUsername("");
     window.location.href = "../logout";
   };
 
@@ -160,7 +162,8 @@ const MeNavBarDisplay = (props) => {
           onClick={handleMenu}
           startIcon={<AccountCircleOutlinedIcon />}
         >
-          {currentUser.detail.username}
+           {isLoged ? `${username} LOGOUT` : "LOGIN"}
+          {/* {currentUser.detail.username} Login */}
         </Button>
       </Box>
       <StyledMenu

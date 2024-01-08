@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Fragment, useState, useEffect, useLayoutEffect } from 'react';
+import Divider from '@mui/material/Divider';
+import { styled } from '@mui/material/styles';
+import { css } from 'styled-components';
 
 const FooterRoot = styled('footer')(
   ({ theme }) => css`
@@ -16,7 +19,7 @@ const FooterRoot = styled('footer')(
     }
 
     small {
-      color: #5e6c79;
+      color: #ffffff;
     }
 
     & .MuiBox-root {
@@ -51,40 +54,13 @@ const FooterRoot = styled('footer')(
 const AppFooter = () => {
   return (
     <FooterRoot>
-      <div>
-        <Box>
-          <div>
-            {localize === 'English' ? (
-              <img src={Usa} alt="US" />
-            ) : (
-              <img src={Spain} alt="ES" />
-            )}
-          </div>
-          <ButtonGroup size="small" variant="text">
-            {languageButtons}
-          </ButtonGroup>
-        </Box>
-        {/* <Divider orientation="vertical" flexItem></Divider> */}
-        <Box>
-          <div>
-            {theme.palette.mode === 'dark' ? (
-              <DarkModeOutlinedIcon fontSize="small" color="secondary" />
-            ) : (
-              <LightModeOutlinedIcon fontSize="small" color="warning" />
-            )}
-          </div>
-          <ButtonGroup size="small" variant="text">
-            {themeButtons}
-          </ButtonGroup>
-        </Box>
-      </div>
-      <Divider />
-      <div>
-        <strong>Help &nbsp;&nbsp; | &nbsp;&nbsp; </strong>
-        <strong>Terms &nbsp;&nbsp; | &nbsp;&nbsp; </strong>
-        <strong>Privacy</strong>
-      </div>
 
+      <Divider />
+      <div >
+        <div>Copyright 2024</div>
+        <div>.</div>
+
+      </div>
     </FooterRoot>
   );
 };

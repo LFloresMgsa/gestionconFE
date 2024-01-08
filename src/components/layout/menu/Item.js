@@ -3,12 +3,18 @@ import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined';
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
+import MissedVideoCallOutlinedIcon from '@mui/icons-material/MissedVideoCallOutlined';
 import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import StoreIcon from '@mui/icons-material/Store';
+
+import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import ReportIcon from '@mui/icons-material/BarChart';
 import { Link } from 'react-router-dom';
 
@@ -49,7 +55,7 @@ const styles = makeStyles((theme) => ({
     '& .MuiSvgIcon-root': {
       left: '20px',
       position: 'absolute',
-      color: 'lightslategray',
+      color: 'white',
       height: 'inherit',
     },
 
@@ -98,6 +104,49 @@ const Item = React.forwardRef((props, ref) => {
       case 'dashboard':
       case 'inicio':
         return <DashboardOutlinedIcon />;
+      case 'tienda':
+        return <StoreIcon />;
+      case 'videoteca':
+        return <MissedVideoCallOutlinedIcon />;
+      case 'Subasta':
+        return <CrisisAlertIcon />;
+
+      case 'Ganadores':
+        return <CrisisAlertIcon />;
+
+      case 'Topes':
+        return <CrisisAlertIcon />;
+
+      case 'Informes':
+        return <CrisisAlertIcon />;
+
+
+      case 'MantCatalogo':
+        return <LibraryAddCheckOutlinedIcon />;
+
+      case 'MantCatalogoImagenes':
+        return <LibraryAddCheckOutlinedIcon />;
+
+      case 'MantVideoteca':
+        return <LibraryAddCheckOutlinedIcon />;
+      case 'MantEvento':
+        return <LibraryAddCheckOutlinedIcon />;
+      case 'MantEventoDet':
+        return <LibraryAddCheckOutlinedIcon />;
+      case 'MantEventoPuja':
+        return <LibraryAddCheckOutlinedIcon />;
+      case 'MantPedido':
+        return <LibraryAddCheckOutlinedIcon />;
+
+      case 'MantPedido':
+        return <LibraryAddCheckOutlinedIcon />;
+
+      // case 'Login':
+      //   return <LoginIcon />;
+      // case 'Logout':
+      //   return <LogoutIcon />;
+
+
       case 'signing-request':
         return <FeaturedPlayListOutlinedIcon />;
       case 'management':
