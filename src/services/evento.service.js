@@ -1,5 +1,4 @@
 //evento.service.js
-import { Try } from '@mui/icons-material';
 import { authHeader, handleResponse } from '../helpers';
 import Fetch from '../helpers/Fetch';
 
@@ -35,7 +34,7 @@ function obtenerUsuario(dataJson) {
 }
 
 
-function obtenerFiles(dataJson, category) {
+function obtenerFiles(category) {
   try {
     const options = { headers: authHeader() };
     const params = {};

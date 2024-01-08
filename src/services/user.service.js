@@ -1,6 +1,6 @@
 import { store } from '../store';
-import { authHeader, handleResponse } from '../helpers';
-import Fetch from '../helpers/Fetch';
+import { authHeader } from '../helpers';
+
 
 export const userService = {
   login,

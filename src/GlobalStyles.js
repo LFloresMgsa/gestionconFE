@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { withStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+
 
 export const GlobalStyle = createGlobalStyle`
     html {

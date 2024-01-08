@@ -14,6 +14,11 @@ const AppRoutes = (props) => {
   return (
     <Switch>
 
+      <Route exact path="/" render={(route) => <Dashboard {...props} {...route} />}>
+        {/* <Redirect to="/inicio" /> */}
+      </Route>
+
+
       <Route
         exact
         path="/login"
