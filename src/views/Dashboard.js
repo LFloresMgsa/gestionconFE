@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../css/imagenfondo.css'
-import fondo from '../imagenes/fondomanual.jpg'
+import fondo from '../imagenes/fondoinicio.jpg'
 const Dashboard = () => {
   return (
     <>

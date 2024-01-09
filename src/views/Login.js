@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@mui/styles';
-import fondo from '../imagenes/fondodos.png'
+
+import fondo from '../imagenes/loginback.png'
+
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 import { eventoService } from '../services/evento.service';
 import md5 from 'md5';
 import Cookies from 'universal-cookie';
-
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LockIcon from '@material-ui/icons/Lock';
+import imagen from '../imagenes/mgsa.jpg';
 const cookies = new Cookies();
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		backgroundImage: `url(${fondo})`,
+		
+		backgroundImage: `linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.0)), url(${fondo})`, // Opacidad agregada con rgba
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
@@ -21,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 		opacity: '1',
 		height: '75%',
 
-		marginTop: theme.spacing(10),
+		marginTop: theme.spacing(8),
 		[theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
 			marginTop: 0,
 			width: '100%',
@@ -29,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 		}
 	},
 	div: {
-		
+
 		marginTop: theme.spacing(4),
 		display: 'flex',
 		flexDirection: 'column',
@@ -69,7 +75,7 @@ const Login = () => {
 			let _body = { Sgm_cUsuario: username, Sgm_cContrasena: md5(password) }
 
 
-			
+
 
 			// obtenemos el token
 			await eventoService.obtenerToken(_body).then(
@@ -102,12 +108,12 @@ const Login = () => {
 
 		try {
 
-			
+
 
 			// genera un token
 			await BuscarToken();
 
-			
+
 
 			// valida si encontro el token
 
@@ -118,8 +124,8 @@ const Login = () => {
 			let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) }
 			let _result;
 
-			
-			
+
+
 
 
 			// si encontro el token ingresa el login
@@ -134,7 +140,7 @@ const Login = () => {
 				}
 			);
 
-			
+
 
 
 			if (_result[0].Sgm_cUsuario == username) {
@@ -145,7 +151,7 @@ const Login = () => {
 				cookies.set('Sgm_cObservaciones', _result[0].Sgm_cObservaciones, { path: "/" });
 				cookies.set('Sgm_cPerfil', _result[0].Sgm_cPerfil, { path: "/" });
 
-				cookies.set('IsLoged', true , { path: "/" });
+				cookies.set('IsLoged', true, { path: "/" });
 
 
 				setError('');
@@ -169,18 +175,17 @@ const Login = () => {
 			<Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
 				<div className={classes.div}>
 
-					<Grid container spacing={1}  >
+					<Grid container spacing={3}  >
 
 						<Grid item xs={12} lg={12} >
-							<Avatar className={classes.avatar}>
-								<LockOutlinedIcon />
-							</Avatar>
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<img src={imagen} style={{ width: '300px', height: 'auto', margin: 'auto' }} alt="Imagen reducida" />
+							</div>
 						</Grid>
 						<Grid item xs={12} lg={12}>
-
-
-							<Typography component='h1' variant='h5'>Ingreso de usuario</Typography>
-
+						<Typography component='h1' variant='h5' style={{ textAlign: 'center', marginTop: '10px' }}>
+								Ingreso de usuario
+							</Typography>
 						</Grid>
 						<Grid item xs={12} lg={12}>
 
@@ -200,6 +205,13 @@ const Login = () => {
 											name='nickname'
 											value={username}
 											onChange={(e) => setUsername(e.target.value)}
+											InputProps={{
+												startAdornment: (
+													<InputAdornment position="start">
+														<AccountCircleIcon />
+													</InputAdornment>
+												),
+											}}
 										/>
 									</Grid>
 									<Grid item xs={12} lg={12}>
@@ -213,13 +225,20 @@ const Login = () => {
 											name='password'
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
+											InputProps={{
+												startAdornment: (
+													<InputAdornment position="start">
+														<LockIcon />
+													</InputAdornment>
+												),
+											}}
 										/>
 									</Grid>
 									<Grid item xs={12} lg={12}>
 										<Button
 											fullWidth
 											variant='contained'
-											color='primary'
+											color='secondary'
 											className={classes.button}
 											onClick={handleLogin}
 										>
