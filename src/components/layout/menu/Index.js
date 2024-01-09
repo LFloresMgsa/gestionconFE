@@ -154,7 +154,7 @@ const _temp_tabs = [
   },
   {
     index: 5, // ***
-    tabID: 1, // ***
+    tabID: 5, // ***
     portalID: 9,
     tabName: 'Soporte', // ***
     title: '',
@@ -162,12 +162,33 @@ const _temp_tabs = [
     parentId: -1,
     level: 0,
     authorizedRoles: '65;-1;',
-    authorizedRolesAllString: ' Root, All, Users , Admin',
+    authorizedRolesAllString: ' Root, All, Users , Admin ',
     administratorRoles: '65;',
     tabOrder: 5,
     isVisible: true,
     componentName: '',
     routeName: 'soporte', // ***
+    isDisabled: false,
+    isDeleted: false,
+    wasUpdated: false,
+    tabChildren: [],
+  },
+  {
+    index: 6, // ***
+    tabID: 6, // ***
+    portalID: 9,
+    tabName: 'Mantenimientos', // ***
+    title: '',
+    description: '',
+    parentId: -1,
+    level: 0,
+    authorizedRoles: '65;-1;',
+    authorizedRolesAllString: ' Root, Admin ',
+    administratorRoles: '65;',
+    tabOrder: 6,
+    isVisible: true,
+    componentName: '',
+    routeName: 'mantenimientos', // ***
     isDisabled: false,
     isDeleted: false,
     wasUpdated: false,

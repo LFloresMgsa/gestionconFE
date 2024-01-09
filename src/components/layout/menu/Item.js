@@ -13,7 +13,7 @@ import ViewListOutlinedIcon from '@mui/icons-material/ViewListOutlined';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import StoreIcon from '@mui/icons-material/Store';
-
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import ReportIcon from '@mui/icons-material/BarChart';
 import { Link } from 'react-router-dom';
@@ -102,65 +102,39 @@ const Item = React.forwardRef((props, ref) => {
     switch (routeName) {
       case 'home':
       case 'dashboard':
-      case 'inicio':
-        return <DashboardOutlinedIcon />;
-      case 'tienda':
-        return <StoreIcon />;
-      case 'videoteca':
-        return <MissedVideoCallOutlinedIcon />;
-      case 'Subasta':
-        return <CrisisAlertIcon />;
+        case 'inicio':
+          return <HomeOutlinedIcon />;
 
-      case 'Ganadores':
-        return <CrisisAlertIcon />;
-
-      case 'Topes':
-        return <CrisisAlertIcon />;
-
-      case 'Informes':
-        return <CrisisAlertIcon />;
-
-
-      case 'MantCatalogo':
-        return <LibraryAddCheckOutlinedIcon />;
-
-      case 'MantCatalogoImagenes':
-        return <LibraryAddCheckOutlinedIcon />;
-
-      case 'MantVideoteca':
-        return <LibraryAddCheckOutlinedIcon />;
-      case 'MantEvento':
-        return <LibraryAddCheckOutlinedIcon />;
-      case 'MantEventoDet':
-        return <LibraryAddCheckOutlinedIcon />;
-      case 'MantEventoPuja':
-        return <LibraryAddCheckOutlinedIcon />;
-      case 'MantPedido':
-        return <LibraryAddCheckOutlinedIcon />;
+      case 'sistemas':
+        return <ContactPageOutlinedIcon />;
+      case 'general':
+        return <ContactPageOutlinedIcon />;
+      case 'mantenimientos':
+        return <ViewListOutlinedIcon />;
+      case 'soporte':
+        return <ManageAccountsIcon />;
 
       case 'MantPedido':
         return <LibraryAddCheckOutlinedIcon />;
-
       // case 'Login':
       //   return <LoginIcon />;
       // case 'Logout':
       //   return <LogoutIcon />;
-
-
+      case 'icon2':
+        return <MissedVideoCallOutlinedIcon />;
+      case 'icon3':
+        return <CrisisAlertIcon />;
       case 'signing-request':
         return <FeaturedPlayListOutlinedIcon />;
       case 'management':
         return <BusinessCenterOutlinedIcon />;
       case 'business-settings':
         return <SettingsOutlinedIcon />;
-      case 'manage-request':
-        return <ViewListOutlinedIcon />;
-      case 'contact-manager':
-        return <ContactPageOutlinedIcon />;
+
+
       case 'notary-desk':
         return <DoneAllIcon />;
-      case 'user-admin':
-        return <ManageAccountsIcon />;
+
       case 'reports':
         return <ReportIcon />;
       default:
