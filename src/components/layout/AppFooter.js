@@ -1,7 +1,4 @@
-import React, { Fragment, useState, useEffect, useLayoutEffect } from 'react';
-import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material/styles';
-import { css } from 'styled-components';
+import React from 'react';
 
 const FooterRoot = styled('footer')(
   ({ theme }) => css`
@@ -19,7 +16,7 @@ const FooterRoot = styled('footer')(
     }
 
     small {
-      color: #ffffff;
+      color: #5e6c79;
     }
 
     & .MuiBox-root {
@@ -28,6 +25,7 @@ const FooterRoot = styled('footer')(
       align-items: center;
       -webkit-box-align: start;
       margin: 7px;
+
     }
 
     .MuiDivider-wrapperVertical {
@@ -41,6 +39,7 @@ const FooterRoot = styled('footer')(
     .MuiButton-textDefault {
       text-transform: capitalize;
       line-height: 10px;
+
     }
 
     .legal {
@@ -54,13 +53,40 @@ const FooterRoot = styled('footer')(
 const AppFooter = () => {
   return (
     <FooterRoot>
-
-      <Divider />
-      <div >
-        <div>Copyright 2024</div>
-        <div>.</div>
-
+      <div>
+        <Box>
+          <div>
+            {localize === 'English' ? (
+              <img src={Usa} alt="US" />
+            ) : (
+              <img src={Spain} alt="ES" />
+            )}
+          </div>
+          <ButtonGroup size="small" variant="text">
+            {languageButtons}
+          </ButtonGroup>
+        </Box>
+        {/* <Divider orientation="vertical" flexItem></Divider> */}
+        <Box>
+          <div>
+            {theme.palette.mode === 'dark' ? (
+              <DarkModeOutlinedIcon fontSize="small" color="secondary" />
+            ) : (
+              <LightModeOutlinedIcon fontSize="small" color="warning" />
+            )}
+          </div>
+          <ButtonGroup size="small" variant="text">
+            {themeButtons}
+          </ButtonGroup>
+        </Box>
       </div>
+      <Divider />
+      <div>
+        <strong>Help &nbsp;&nbsp; | &nbsp;&nbsp; </strong>
+        <strong>Terms &nbsp;&nbsp; | &nbsp;&nbsp; </strong>
+        <strong>Privacy</strong>
+      </div>
+
     </FooterRoot>
   );
 };

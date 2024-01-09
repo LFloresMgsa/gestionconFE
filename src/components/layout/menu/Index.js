@@ -27,7 +27,7 @@ const StyledMenu = styled(Drawer)(
       width: ${state.width};
       margin-top: ${['xs', 'sm'].includes(viewport) ? '0px' : '50px'};
       justify-content: space-between;
-      background-color: #8b0000;
+      background-color: #d3d3d3;
     }
 
     #menu-dev-info {
@@ -106,8 +106,8 @@ const _temp_tabs = [
     wasUpdated: false,
     tabChildren: [
       {
-        index: 400,
-        tabID: 400,
+        index: 3,
+        tabID: 3,
         portalID: 9,
         tabName: 'General',
         title: '',
@@ -127,8 +127,8 @@ const _temp_tabs = [
         tabChildren: [],
       },
       {
-        index: 401,
-        tabID: 401,
+        index: 4,
+        tabID: 4,
         portalID: 9,
         tabName: 'Sistemas',
         title: '',
@@ -147,12 +147,32 @@ const _temp_tabs = [
         wasUpdated: false,
         tabChildren: [],
       },    
-
+     
             
     ],
-    
-  },
 
+  },
+  {
+    index: 5, // ***
+    tabID: 1, // ***
+    portalID: 9,
+    tabName: 'Soporte', // ***
+    title: '',
+    description: '',
+    parentId: -1,
+    level: 0,
+    authorizedRoles: '65;-1;',
+    authorizedRolesAllString: ' Root, All, Users , Admin',
+    administratorRoles: '65;',
+    tabOrder: 5,
+    isVisible: true,
+    componentName: '',
+    routeName: 'soporte', // ***
+    isDisabled: false,
+    isDeleted: false,
+    wasUpdated: false,
+    tabChildren: [],
+  },
 ];
 
 

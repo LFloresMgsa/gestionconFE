@@ -110,7 +110,7 @@ const AlertItem = (props) => {
             alert.withRedirect &&
             alert.withRedirect.isButton && (
               <Button
-                color="inherit"
+                color="white"
                 component={Link}
                 to={alert.withRedirect.to}
               >

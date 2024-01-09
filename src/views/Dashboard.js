@@ -6,8 +6,9 @@ const Dashboard = () => {
     <>
       <div className="container" >
         <div className="image-container">
-          <img className="centered-image" src={fondo} alt="campeonato" />
+          <img className="centered-image" src={fondo} alt=""  />
         </div>
+        
       </div>
       <div>
       </div>

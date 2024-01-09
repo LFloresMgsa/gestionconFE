@@ -3,7 +3,7 @@ import {
   green,
   indigo,
   lightBlue,
-  pink,
+  grey,
   purple,
 } from '@mui/material/colors';
 
@@ -18,7 +18,7 @@ const appThemes = {
         styleOverrides: {
           root: {
             '& .MuiAccordion-root': {
-              backgroundColor: '#0e1316',
+              backgroundColor: 'white',
             },
             '& .MuiAccordionSummary-content': {
               margin: 0,
@@ -126,10 +126,10 @@ const appThemes = {
       nsAppHeaderBG: {
         main: '',
       },
-      nsLeftMenuTextColor: '#cfcfcf',
+      nsLeftMenuTextColor: 'black',
       nsDangerColor: {
-        main: '#C62828',
-        hover: '#8c1c1c',
+        main: 'black',
+        hover: 'black',
         contrastText: '#ffffff',
       },
       nsTableRowUpload: {
@@ -163,7 +163,7 @@ const appThemes = {
         styleOverrides: {
           root: {
             '& .MuiAccordion-root': {
-              backgroundColor: '#0e1316',
+              backgroundColor: 'white',
             },
             '& .MuiAccordionSummary-content': {
               margin: 0,
@@ -277,7 +277,7 @@ const appThemes = {
         contrastText: '#fff',
         hover: '#19252a',
       },
-      nsLeftMenuTextColor: '#90a4ae',
+      nsLeftMenuTextColor: 'black',
       nsAppBG: {
         main: '',
       },
@@ -425,7 +425,7 @@ const appThemes = {
         default: '#F3F6F9',
       },
       default: {
-        main: '#707071',
+        main: 'white',
         contrastText: '#fff',
       },
       primary: {
@@ -469,13 +469,11 @@ const appThemes = {
         main: 'rgb(90 146 201)',
       },
       nsTileBodyBG: {
-        main: '#f3f6f9',
+        main: 'white',
       },
-      nsLeftMenuTextColor: '#767676',
+      nsLeftMenuTextColor: 'black',
       nsDangerColor: {
-        main: '#C62828',
-        hover: '#8c1c1c',
-        contrastText: '#ffffff',
+        main: 'black',
       },
       nsTableRowUpload: {
         main: 'beige',
@@ -484,21 +482,25 @@ const appThemes = {
         main: '#fbfbfb',
       },
       nsTableBodyBG: {
-        main: '#f3f6f9',
+        main: 'white',
         tabColor: '#f5f5f5',
       },
       nsTableRowHoverBG: {
         main: '#e0e0e0a6',
       },
       nsTableRowBorder: {
-        main: 'black',
+        main: '#8b0000',
       },
       nsStickDivBG: {
-        main: '#F3F6F9',
+        main: 'white',
       },
       nsPanelInfoBG: {
         main: 'beige',
       },
+      sbAppBarYMenuBG: {
+        main: '#8b0000',
+      },
+
       contrastThreshold: 3,
       tonalOffset: 0.2, // changes can be viewed when hover over a button
     },
@@ -506,13 +508,13 @@ const appThemes = {
 };
 
 const appColors = {
-  pink: {
+  grey: {
     palette: {
       primary: {
-        main: pink[500],
+        main: grey[800],
       },
       secondary: {
-        main: pink[50],
+        main: grey[50],
       },
     },
   },
@@ -539,7 +541,7 @@ const appColors = {
   indigo: {
     palette: {
       primary: {
-        main: indigo[500],
+        main: indigo[800],
       },
       secondary: {
         main: indigo[50],
@@ -556,13 +558,13 @@ const appColors = {
       },
     },
   },
-  lightBlue: {
+  black: {
     palette: {
       primary: {
-        main: lightBlue[500],
+        main: grey[900],
       },
       secondary: {
-        main: lightBlue[50],
+        main: grey[50],
       },
     },
   },

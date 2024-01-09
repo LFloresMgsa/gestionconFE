@@ -6,6 +6,7 @@ import Dashboard from './views/Dashboard';
 import { Categorias } from './views/Categorias';
 import Login from './views/Login';
 import Logout from './views/Logout';
+import Soporte from './views/Soporte';
 
 
 const AppRoutes = (props) => {
@@ -25,6 +26,11 @@ const AppRoutes = (props) => {
         render={(route) => <Login {...props} {...route} />}
       />
 
+<Route
+        exact
+        path="/soporte"
+        render={(route) => <Soporte {...props} {...route} />}
+      />
 
       <Route
         exact
@@ -38,12 +44,12 @@ const AppRoutes = (props) => {
       />
       <Route
         path="/general"
-        render={(route) => <Categorias {...props} {...route} pCategory="category1" />}
+        render={(route) => <Categorias {...props} {...route} pCategory="general" />}
 
       />
       <Route
         path="/sistemas"
-        render={(route) => <Categorias {...props} {...route} pCategory="category2" />}
+        render={(route) => <Categorias {...props} {...route} pCategory="sistemas" />}
       />
     </Switch>
   );

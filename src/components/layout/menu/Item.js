@@ -55,7 +55,7 @@ const styles = makeStyles((theme) => ({
     '& .MuiSvgIcon-root': {
       left: '20px',
       position: 'absolute',
-      color: 'white',
+      color: 'lightslategray',
       height: 'inherit',
     },
 

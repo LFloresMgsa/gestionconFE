@@ -90,7 +90,7 @@ const Loading = (props) => {
       {props.forList && (
         <Spinner forList color="default">
           <Box sx={{ position: 'relative', paddingTop: '10px' }}>
-            <CircularProgress color="inherit" />
+            <CircularProgress color="white" />
             <Box
               sx={{
                 top: 0,

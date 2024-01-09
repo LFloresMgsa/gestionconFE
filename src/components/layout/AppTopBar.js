@@ -16,7 +16,7 @@ const AppTopBar = (props) => {
 
   return (
 
-    <AppBar style={{ backgroundColor :'#8b0000' }}>
+    <AppBar style={{ backgroundColor :theme.palette.sbAppBarYMenuBG?.main }}>
       <Toolbar variant="dense" style={{ justifyContent: 'space-between' }}>
         <div className="toolbar-left">
           <div>
@@ -46,7 +46,7 @@ const AppTopBar = (props) => {
         </div>
 
         <div className="toolbar-right">
-          <MeNavBarDisplay setTheme={(event) => props.setter(event)} />
+          <MeNavBarDisplay setTheme={(event) => props.setter(event)}  />
         </div>
       </Toolbar>
       

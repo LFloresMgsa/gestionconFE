@@ -39,7 +39,7 @@ const styles = makeStyles((theme) => ({
     },
 
     '& .MuiCollapse-entered': {
-      color: '#bebcbc',
+      color: 'white',
       backgroundColor:
         theme.palette.mode === 'light'
           ? '#f3f6f97a'

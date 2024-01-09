@@ -17,6 +17,7 @@ const DashboardCard = styled(Card)(
     @media screen and (max-width: 1200px) {
       margin: Calc(2% - 5px);
     }
+    
 
     @media screen and (max-width: 600px) {
       padding: 0px;
@@ -66,7 +67,7 @@ const DashboardCard = styled(Card)(
     .links {
       /* width: 50px; */
       height: 14px;
-      background-color: inherit;
+      background-color: white;
       color: gray;
       border-radius: 5px;
       padding: 3px;

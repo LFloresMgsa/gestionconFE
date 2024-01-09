@@ -38,11 +38,12 @@ function obtenerFiles(category) {
   try {
     const options = { headers: authHeader() };
     const params = {};
-
+    const encodedCategory = encodeURIComponent(category)
     // Utiliza Fetch.get para realizar una solicitud GET
-    const url = `/api/gescon/documents?category=${category}`;
+    const url = `/api/gescon/documents?category=${encodedCategory}`;
 
-    //console.log(url);
+    console.log(url);
+    console.log(category);
 
     return Fetch.get(url, params, options).then((res) =>
       handleResponse(res, false)
