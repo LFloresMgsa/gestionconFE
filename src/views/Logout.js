@@ -36,7 +36,7 @@ const Logout = () => {
     setTimeout(() => {
       setShowAlert(false);
       window.location.href = './inicio'; // Redirige después de cerrar sesión
-    }, 800); // 1000 milisegundos (1 segundo) - ajusta según sea necesario
+    }, 500); // 1000 milisegundos (1 segundo) - ajusta según sea necesario
   };
 
   useEffect(() => {

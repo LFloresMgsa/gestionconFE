@@ -2,17 +2,12 @@ import React, { useState } from 'react'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@mui/styles';
 
-import fondo from '../imagenes/loginback.png'
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { eventoService } from '../services/evento.service';
 import md5 from 'md5';
 import Cookies from 'universal-cookie';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LockIcon from '@material-ui/icons/Lock';
-import imagen from '../imagenes/mgsa.jpg';
+
 const cookies = new Cookies();
 
 const useStyles = makeStyles(theme => ({
@@ -66,105 +61,82 @@ const Login = () => {
 	const [Token, setToken] = useState('');
 
 
+
 	const BuscarToken = async () => {
-
 		try {
-			let _body = { Sgm_cUsuario: username, Sgm_cContrasena: md5(password) }
-
-
-
-
-			// obtenemos el token
-			await eventoService.obtenerToken(_body).then(
-				(res) => {
-					setToken(res)
-				},
-				(error) => {
-					console.log(error);
-				}
-			);
-
-			if (Token) {
-				cookies.set('token', Token.token, { path: "/" });
-				setError('');
-			}
-		} catch (error) {
-			setError('An error occurred while trying to login - token');
-		}
-	};
-
-
-	const handleLogin = async () => {
-
-		try {
-
-
-
-			// genera un token
-			await BuscarToken();
-
-
-
-			// valida si encontro el token
-
-			if (!cookies.get('token')) {
-				throw "Error: Token no existe";
-			}
-
-			let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) }
-			let _result;
-
-
-
-
-
-			// si encontro el token ingresa el login
-			await eventoService.obtenerUsuario(_body).then(
-
-				(res) => {
-					setLogeo(res[0]);
-					_result = res[0];
-				},
-				(error) => {
-					console.log(error);
-				}
-			);
-
-
-
-
-			if (_result[0].Sgm_cUsuario == username) {
-
-				cookies.set('Sgm_cUsuario', _result[0].Sgm_cUsuario, { path: "/" });
-				cookies.set('Sgm_cNombre', _result[0].Sgm_cNombre, { path: "/" });
-				cookies.set('Sgm_cContrasena', _result[0].Sgm_cContrasena, { path: "/" });
-				cookies.set('Sgm_cObservaciones', _result[0].Sgm_cObservaciones, { path: "/" });
-				cookies.set('Sgm_cPerfil', _result[0].Sgm_cPerfil, { path: "/" });
-
-				cookies.set('IsLoged', true, { path: "/" });
-
-
-				setError('');
-
-				if (cookies.get('token')) {
-					window.location.href = "./inicio";
-				}
-
-
-			}
-		} catch (error) {
+		  let _body = { Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
+	  
+		  // obtenemos el token
+		  const tokenResponse = await eventoService.obtenerToken(_body);
+	  
+		  // Utiliza la variable local en lugar del estado Token
+		  if (tokenResponse) {
+			cookies.set('token', tokenResponse.token, { path: "/" });
 			setError('');
-
+		  }
+		} catch (error) {
+		  setError('An error occurred while trying to login - token');
 		}
-	};
+	  };
+
+
+
+	  const handleLogin = async () => {
+		try {
+		  // Genera un token
+		  await BuscarToken();
+	  
+		  // Valida si encontró el token
+		  if (!cookies.get('token')) {
+			throw "Error: Token no existe";
+		  }
+	  
+		  let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
+		  let _result;
+	  
+		  // Si encontró el token ingresa al login
+		  await eventoService.obtenerUsuario(_body).then(
+			(res) => {
+			  setLogeo(res[0]);
+			  _result = res[0];
+			},
+			(error) => {
+			  console.log(error);
+			  throw "Error al obtener el usuario";
+			}
+		  );
+	  
+		  if (_result[0].Sgm_cUsuario === username) {
+			cookies.set('Sgm_cUsuario', _result[0].Sgm_cUsuario, { path: "/" });
+			cookies.set('Sgm_cNombre', _result[0].Sgm_cNombre, { path: "/" });
+			cookies.set('Sgm_cContrasena', _result[0].Sgm_cContrasena, { path: "/" });
+			cookies.set('Sgm_cObservaciones', _result[0].Sgm_cObservaciones, { path: "/" });
+			cookies.set('Sgm_cPerfil', _result[0].Sgm_cPerfil, { path: "/" });
+	  
+			cookies.set('IsLoged', true, { path: "/" });
+	  
+			setError('');
+	  
+			if (cookies.get('token')) {
+			  window.location.href = "./inicio";
+			}
+		  }
+		} catch (error) {
+		  setError('');
+		  console.error('Error durante el inicio de sesión:', error);
+	  
+		  // Muestra una notificación en caso de error
+		  toast.error('Usuario o contraseña incorrectos', {
+			position: toast.POSITION.TOP_CENTER,
+		  });
+		}
+	  };
 
 	return (
-
 		<Container component="main" maxWidth="xs" style={{ border: '1.5px solid #8b0000', borderRadius: '5px', padding: '16px' }}>
-
-			<Paper elevation={0} style={{ }}>
-				<form style={{ }}>
-					<label style={{ fontWeight: 'bold', fontSize: '1.2em', textAlign:'center' }}>Ingreso al Sistema</label>
+			<Paper elevation={0}>
+				<form>
+					<label style={{ fontWeight: 'bold', fontSize: '1.2em', textAlign: 'center' }}>Ingreso al Sistema</label>
 
 					{/* Etiqueta y campo de Usuario */}
 					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -173,9 +145,19 @@ const Login = () => {
 							autoFocus
 							variant="outlined"
 							margin="normal"
-							style={{ width: '200px' }}  // Ajusta el ancho como desees
+							style={{ width: '200px' }}
 							value={username}
-							onChange={(e) => setUsername(e.target.value)}
+							onChange={(e) => setUsername(e.target.value.toUpperCase())}
+							onKeyDown={(e) => {
+								if (e.key === 'Tab') {
+									e.preventDefault();
+									document.getElementById('password').focus();
+								}
+								if (e.key === 'Enter') {
+									e.preventDefault();
+									handleLogin();
+								}
+							}}
 							autoComplete="username"
 						/>
 					</div>
@@ -183,13 +165,20 @@ const Login = () => {
 					{/* Etiqueta y campo de Contraseña */}
 					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-20px' }}>
 						<TextField
+							id="password"
 							label="Contraseña"
 							type="password"
 							variant="outlined"
 							margin="normal"
-							style={{ width: '200px' }}  // Ajusta el ancho como desees
+							style={{ width: '200px' }}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							onKeyPress={(e) => {
+								if (e.key === 'Enter') {
+									e.preventDefault();
+									handleLogin();
+								}
+							}}
 							autoComplete="current-password"
 						/>
 					</div>
@@ -198,13 +187,13 @@ const Login = () => {
 					<Button variant="contained" style={{ backgroundColor: '#8b0000', color: 'white' }} fullWidth onClick={handleLogin}>
 						Ingresar
 					</Button>
-
-					{/* Puedes agregar más elementos con etiquetas aquí si es necesario */}
 				</form>
 			</Paper>
+
+			{/* ToastContainer para mostrar notificaciones */}
+			<ToastContainer />
 		</Container>
 	);
-
-}
+};
 
 export default Login

@@ -89,8 +89,10 @@ const MeNavBarDisplay = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (e) => {
+    if (e.key !== 'Tab') {
+      setAnchorEl(null);
+    }
   };
 
   const handleLogin = () => {
@@ -147,8 +149,8 @@ const MeNavBarDisplay = (props) => {
 
 
   }, [])
-  
-  
+
+
 
   return (
     <React.Fragment>
@@ -158,7 +160,7 @@ const MeNavBarDisplay = (props) => {
           onClick={handleMenu}
           startIcon={<AccountCircleOutlinedIcon />}
         >
-           {isLoged ? `${username} LOGOUT` : "LOGIN"}
+          {isLoged ? `${username} LOGOUT` : "LOGIN"}
           {/* {currentUser.detail.username} Login */}
         </Button>
       </Box>
@@ -169,21 +171,21 @@ const MeNavBarDisplay = (props) => {
         style={{ marginTop: '10px' }}
         variant="menu"
       >
- {!isLoged && 
-            
+        {!isLoged &&
 
-              <Login/>
-            
-          }
-          
-          {isLoged &&
-            <MenuItem onClick={handleLogout}>
-              <ListItemIcon>
-                <LogoutIcon fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Cerrar Sesion</ListItemText>
-            </MenuItem>
-          }
+
+          <Login />
+
+        }
+
+        {isLoged &&
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Cerrar Sesion</ListItemText>
+          </MenuItem>
+        }
       </StyledMenu>
     </React.Fragment>
   );
