@@ -15,7 +15,7 @@ module.exports = merge(common, {
         NODE_ENV: JSON.stringify('development'),
       },
       BUILD_ENV: JSON.stringify('development'),
-      SERVICE_URL: JSON.stringify('https://localhost:44342'),
+      SERVICE_URL: JSON.stringify('http://localhost'),
       RECAPTCHA_KEY: JSON.stringify('xyz'),
       // WEBSITE_USER_PASSWORDS is being used for development only
       // WEBSITE_USER_PASSWORDS: fs.readFileSync(
@@ -28,7 +28,7 @@ module.exports = merge(common, {
     contentBase: './dist',
     historyApiFallback: true,
     host: 'localhost',
-    port: 82,
+    port: 8085,
     https: false,
     disableHostCheck: true,
     // key: fs.readFileSync('localhost-key.pem'), // LUIS: Hablar con Victor.

@@ -1,8 +1,10 @@
+//menavbardisplay.js
 import React, { useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import Login from '../../../views/Login';
 
 import {
   Button,
@@ -164,17 +166,14 @@ const MeNavBarDisplay = (props) => {
         anchorEl={anchorEl}
         open={openMenu}
         onClose={handleClose}
-        onClick={handleClose}
+        style={{ marginTop: '10px' }}
         variant="menu"
       >
- {!isLoged &&
-            <MenuItem onClick={handleLogin} >
-              <ListItemIcon>
-                <LoginIcon fontSize="small" />
+ {!isLoged && 
+            
 
-              </ListItemIcon>
-              <ListItemText>Iniciar Sesion</ListItemText>
-            </MenuItem>
+              <Login/>
+            
           }
           
           {isLoged &&

@@ -3,7 +3,8 @@ import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBasel
 import { makeStyles } from '@mui/styles';
 
 import fondo from '../imagenes/loginback.png'
-
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 import { eventoService } from '../services/evento.service';
 import md5 from 'md5';
@@ -16,19 +17,14 @@ const cookies = new Cookies();
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		
-		backgroundImage: `linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.0)), url(${fondo})`, // Opacidad agregada con rgba
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-		height: '91vh'
+
 	},
 	container: {
 		opacity: '1',
-		height: '75%',
+		height: '50%',
 
-		marginTop: theme.spacing(8),
-		[theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
+		marginTop: theme.spacing(0),
+		[theme.breakpoints.down(400 + theme.spacing(0) + 0)]: {
 			marginTop: 0,
 			width: '100%',
 			height: '100%'
@@ -36,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	div: {
 
-		marginTop: theme.spacing(4),
+		marginTop: theme.spacing(0),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center'
@@ -45,16 +41,17 @@ const useStyles = makeStyles(theme => ({
 
 
 
+
 	avatar: {
-		margin: theme.spacing(1),
+		margin: theme.spacing(0),
 		backgroundColor: theme.palette.primary.main
 	},
 	form: {
 		width: '100%',
-		marginTop: theme.spacing(1)
+		marginTop: theme.spacing(0)
 	},
 	button: {
-		margin: theme.spacing(3, 0, 2)
+		margin: theme.spacing(0, 0, 0)
 
 	}
 }))
@@ -86,13 +83,6 @@ const Login = () => {
 					console.log(error);
 				}
 			);
-			/*
-				  console.log('------------**********');
-				  console.log(username);
-				  console.log(password);
-				  console.log(Token.token);
-				  console.log('------------**********');
-			*/
 
 			if (Token) {
 				cookies.set('token', Token.token, { path: "/" });
@@ -168,91 +158,53 @@ const Login = () => {
 		}
 	};
 
-
 	return (
-		<Grid container component='main' className={classes.root}>
-			<CssBaseline />
-			<Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
-				<div className={classes.div}>
 
-					<Grid container spacing={3}  >
+		<Container component="main" maxWidth="xs" style={{ border: '1.5px solid #8b0000', borderRadius: '5px', padding: '16px' }}>
 
-						<Grid item xs={12} lg={12} >
-							<div style={{ display: 'flex', justifyContent: 'center' }}>
-								<img src={imagen} style={{ width: '300px', height: 'auto', margin: 'auto' }} alt="Imagen reducida" />
-							</div>
-						</Grid>
-						<Grid item xs={12} lg={12}>
-						<Typography component='h1' variant='h5' style={{ textAlign: 'center', marginTop: '10px' }}>
-								Ingreso de usuario
-							</Typography>
-						</Grid>
-						<Grid item xs={12} lg={12}>
+			<Paper elevation={0} style={{ }}>
+				<form style={{ }}>
+					<label style={{ fontWeight: 'bold', fontSize: '1.2em', textAlign:'center' }}>Ingreso al Sistema</label>
 
-							<form className={classes.form}>
+					{/* Etiqueta y campo de Usuario */}
+					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+						<TextField
+							label="Usuario"
+							autoFocus
+							variant="outlined"
+							margin="normal"
+							style={{ width: '200px' }}  // Ajusta el ancho como desees
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							autoComplete="username"
+						/>
+					</div>
 
-								<Grid container spacing={1}>
+					{/* Etiqueta y campo de Contraseña */}
+					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-20px' }}>
+						<TextField
+							label="Contraseña"
+							type="password"
+							variant="outlined"
+							margin="normal"
+							style={{ width: '200px' }}  // Ajusta el ancho como desees
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							autoComplete="current-password"
+						/>
+					</div>
 
-									<Grid item xs={12} lg={12}>
+					{/* Botón de Ingresar */}
+					<Button variant="contained" style={{ backgroundColor: '#8b0000', color: 'white' }} fullWidth onClick={handleLogin}>
+						Ingresar
+					</Button>
 
-										<TextField
-											fullWidth
-											autoFocus
-											color='primary'
-											margin='normal'
-											variant='outlined'
-											label='Usuario'
-											name='nickname'
-											value={username}
-											onChange={(e) => setUsername(e.target.value)}
-											InputProps={{
-												startAdornment: (
-													<InputAdornment position="start">
-														<AccountCircleIcon />
-													</InputAdornment>
-												),
-											}}
-										/>
-									</Grid>
-									<Grid item xs={12} lg={12}>
-										<TextField
-											fullWidth
-											type='password'
-											color='primary'
-											margin='normal'
-											variant='outlined'
-											label='Contraseña'
-											name='password'
-											value={password}
-											onChange={(e) => setPassword(e.target.value)}
-											InputProps={{
-												startAdornment: (
-													<InputAdornment position="start">
-														<LockIcon />
-													</InputAdornment>
-												),
-											}}
-										/>
-									</Grid>
-									<Grid item xs={12} lg={12}>
-										<Button
-											fullWidth
-											variant='contained'
-											color='secondary'
-											className={classes.button}
-											onClick={handleLogin}
-										>
-											Ingresar
-										</Button>
-									</Grid>
-								</Grid>
-							</form>
-						</Grid>
-					</Grid>
-				</div>
-			</Container >
-		</Grid >
-	)
+					{/* Puedes agregar más elementos con etiquetas aquí si es necesario */}
+				</form>
+			</Paper>
+		</Container>
+	);
+
 }
 
 export default Login
