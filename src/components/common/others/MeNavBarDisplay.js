@@ -94,16 +94,18 @@ const MeNavBarDisplay = (props) => {
       setAnchorEl(null);
     }
   };
-
+  const [showLoginForm, setShowLoginForm] = useState(!isLoged); 
   const handleLogin = () => {
     setIsLoged(true);
     setUsername(currentUser.detail.username);
-    window.location.href = "../login";
+    setShowLoginForm(false);
+    // Additional logic if needed
   };
 
   const handleLogout = () => {
     setIsLoged(false);
     setUsername("");
+    setShowLoginForm(false);
     window.location.href = "../logout";
   };
 
@@ -161,7 +163,6 @@ const MeNavBarDisplay = (props) => {
           startIcon={<AccountCircleOutlinedIcon />}
         >
           {isLoged ? `${username} LOGOUT` : "LOGIN"}
-          {/* {currentUser.detail.username} Login */}
         </Button>
       </Box>
       <StyledMenu
@@ -171,24 +172,19 @@ const MeNavBarDisplay = (props) => {
         style={{ marginTop: '10px' }}
         variant="menu"
       >
-        {!isLoged &&
+        {!isLoged && showLoginForm && <Login />}
 
-
-          <Login />
-
-        }
-
-        {isLoged &&
+        {isLoged && (
           <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <LogoutIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Cerrar Sesion</ListItemText>
           </MenuItem>
-        }
+        )}
       </StyledMenu>
     </React.Fragment>
   );
 };
-
 export default MeNavBarDisplay;
+

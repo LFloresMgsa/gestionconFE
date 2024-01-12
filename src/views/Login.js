@@ -7,7 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { eventoService } from '../services/evento.service';
 import md5 from 'md5';
 import Cookies from 'universal-cookie';
-
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const cookies = new Cookies();
 
 const useStyles = makeStyles(theme => ({
@@ -59,78 +60,78 @@ const Login = () => {
 	const [logeo, setLogeo] = useState('');
 	const [error, setError] = useState('');
 	const [Token, setToken] = useState('');
-
+	const [showPassword, setShowPassword] = useState(false);
 
 
 	const BuscarToken = async () => {
 		try {
-		  let _body = { Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
-	  
-		  // obtenemos el token
-		  const tokenResponse = await eventoService.obtenerToken(_body);
-	  
-		  // Utiliza la variable local en lugar del estado Token
-		  if (tokenResponse) {
-			cookies.set('token', tokenResponse.token, { path: "/" });
-			setError('');
-		  }
+			let _body = { Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
+
+			// obtenemos el token
+			const tokenResponse = await eventoService.obtenerToken(_body);
+
+			// Utiliza la variable local en lugar del estado Token
+			if (tokenResponse) {
+				cookies.set('token', tokenResponse.token, { path: "/" });
+				setError('');
+			}
 		} catch (error) {
-		  setError('An error occurred while trying to login - token');
+			setError('An error occurred while trying to login - token');
 		}
-	  };
+	};
 
 
 
-	  const handleLogin = async () => {
+	const handleLogin = async () => {
 		try {
-		  // Genera un token
-		  await BuscarToken();
-	  
-		  // Valida si encontró el token
-		  if (!cookies.get('token')) {
-			throw "Error: Token no existe";
-		  }
-	  
-		  let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
-		  let _result;
-	  
-		  // Si encontró el token ingresa al login
-		  await eventoService.obtenerUsuario(_body).then(
-			(res) => {
-			  setLogeo(res[0]);
-			  _result = res[0];
-			},
-			(error) => {
-			  console.log(error);
-			  throw "Error al obtener el usuario";
+			// Genera un token
+			await BuscarToken();
+
+			// Valida si encontró el token
+			if (!cookies.get('token')) {
+				throw "Error: Token no existe";
 			}
-		  );
-	  
-		  if (_result[0].Sgm_cUsuario === username) {
-			cookies.set('Sgm_cUsuario', _result[0].Sgm_cUsuario, { path: "/" });
-			cookies.set('Sgm_cNombre', _result[0].Sgm_cNombre, { path: "/" });
-			cookies.set('Sgm_cContrasena', _result[0].Sgm_cContrasena, { path: "/" });
-			cookies.set('Sgm_cObservaciones', _result[0].Sgm_cObservaciones, { path: "/" });
-			cookies.set('Sgm_cPerfil', _result[0].Sgm_cPerfil, { path: "/" });
-	  
-			cookies.set('IsLoged', true, { path: "/" });
-	  
-			setError('');
-	  
-			if (cookies.get('token')) {
-			  window.location.href = "./inicio";
+
+			let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
+			let _result;
+
+			// Si encontró el token ingresa al login
+			await eventoService.obtenerUsuario(_body).then(
+				(res) => {
+					setLogeo(res[0]);
+					_result = res[0];
+				},
+				(error) => {
+					console.log(error);
+					throw "Error al obtener el usuario";
+				}
+			);
+
+			if (_result[0].Sgm_cUsuario === username) {
+				cookies.set('Sgm_cUsuario', _result[0].Sgm_cUsuario, { path: "/" });
+				cookies.set('Sgm_cNombre', _result[0].Sgm_cNombre, { path: "/" });
+				cookies.set('Sgm_cContrasena', _result[0].Sgm_cContrasena, { path: "/" });
+				cookies.set('Sgm_cObservaciones', _result[0].Sgm_cObservaciones, { path: "/" });
+				cookies.set('Sgm_cPerfil', _result[0].Sgm_cPerfil, { path: "/" });
+
+				cookies.set('IsLoged', true, { path: "/" });
+
+				setError('');
+
+				if (cookies.get('token')) {
+					window.location.href = "./inicio";
+				}
 			}
-		  }
 		} catch (error) {
-		  setError('');
-		  console.error('Error durante el inicio de sesión:', error);
-	  
-		  // Muestra una notificación en caso de error
-		  toast.error('Usuario o contraseña incorrectos', {
-			position: toast.POSITION.TOP_CENTER,
-		  });
+			setError('');
+			console.error('Error durante el inicio de sesión:', error);
+
+			// Muestra una notificación en caso de error
+			toast.error('Usuario o contraseña incorrectos', {
+				position: toast.POSITION.TOP_CENTER,
+			});
 		}
-	  };
+	};
 
 	return (
 		<Container component="main" maxWidth="xs" style={{ border: '1.5px solid #8b0000', borderRadius: '5px', padding: '16px' }}>
@@ -167,7 +168,7 @@ const Login = () => {
 						<TextField
 							id="password"
 							label="Contraseña"
-							type="password"
+							type={showPassword ? 'text' : 'password'}
 							variant="outlined"
 							margin="normal"
 							style={{ width: '200px' }}
@@ -180,6 +181,17 @@ const Login = () => {
 								}
 							}}
 							autoComplete="current-password"
+							InputProps={{
+								endAdornment: (
+									<Button
+										onClick={() => setShowPassword(!showPassword)}
+										style={{ padding: 0, minWidth: 0 }}
+										disableRipple
+									>
+										{showPassword ? <VisibilityOff /> : <Visibility />}
+									</Button>
+								),
+							}}
 						/>
 					</div>
 
