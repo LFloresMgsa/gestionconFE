@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components'; 
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
-import fondo from '../imagenes/fondoinicio.jpg';
+import fondo from '../imagenes/fondo.png';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -28,8 +28,9 @@ const StyledLoadingCircle = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 140%;
-  opacity: 0.5;
+  width: 100vw;
+  height: auto;
+
 `;
 
 const Dashboard = () => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
+    <Container component="main" maxWidth="xs" sx={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
       <CssBaseline />
       <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <StyledImage src={fondo} alt="" />
