@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
 import fondo from '../imagenes/fondo.png';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
+import { styled as muiStyled, css } from '@mui/system';
+import Divider from '@mui/material/Divider';
 const WhiteBackground = styled.div`
   position: fixed;
   top: 0;
@@ -32,7 +33,59 @@ const StyledImage = styled.img`
   height: auto;
 
 `;
+const FooterRoot = muiStyled('footer')(
+  ({ theme }) => css`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-35%);
+  text-align: center;
+  width: 60%;  /* Ajusta el ancho según tus necesidades */
+  margin-top: 10px; /* Ajusta el margen superior según tus necesidades */
+  z-index: 1; /* Asegura que esté encima de la imagen */
+  background-color: white; /* Añade un fondo blanco si es necesario */
 
+
+    & > div:nth-child(1) {
+      position: relative;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: end;
+      height: 40px;
+    }
+
+    small {
+      color: #5e6c79;
+    }
+
+    & .MuiBox-root {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-box-align: start;
+      margin: 7px;
+    }
+
+    .MuiDivider-wrapperVertical {
+      padding: 0px;
+    }
+
+    & > .MuiDivider-root:nth-child(2) {
+      margin: 5px auto;
+    }
+
+    .MuiButton-textDefault {
+      text-transform: capitalize;
+      line-height: 10px;
+    }
+
+    .legal {
+      display: flex;
+      font-size: 0.7rem;
+      justify-content: space-between;
+    }
+  `
+);
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +98,7 @@ const Dashboard = () => {
     loadData();
   }, []);
 
+
   return (
     <Container component="main" maxWidth="xs" sx={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
       <CssBaseline />
@@ -54,8 +108,17 @@ const Dashboard = () => {
         {loading && <StyledLoadingCircle />} {/* Muestra el LoadingCircle solo cuando loading es true */}
         <div>{/* Contenido adicional */}</div>
       </Box>
+      <FooterRoot>
+        <div></div>
+        <Divider />
+        <div>
+          <div>Copyright© 2024 - Management Group S.A.</div>
+          <div></div>
+        </div>
+      </FooterRoot>
+
     </Container>
-  );  
+  );
 };
 
 export default Dashboard;
