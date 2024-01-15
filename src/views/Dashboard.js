@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 const WhiteBackground = styled.div`
   position: fixed;
-  top: 0a;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
