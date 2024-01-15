@@ -6,7 +6,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { PictureAsPdf as PdfIcon } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 import AppFooter from '../components/layout/AppFooter';
-
+import { styled, css } from '@mui/system';
+import Divider from '@mui/material/Divider';
 const columns = [
   {
     field: 'icon', headerName: 'Tipo', 
@@ -39,6 +40,53 @@ const columns = [
   },  
 ];
 
+const FooterRoot = styled('footer')(
+  ({ theme }) => css`
+    margin: 0 auto;
+    text-align: center;
+    width: 32%;
+    margin-top: 30px !important;
+
+    & > div:nth-child(1) {
+      position: relative;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: end;
+      height: 40px;
+    }
+
+    small {
+      color: #5e6c79;
+    }
+
+    & .MuiBox-root {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-box-align: start;
+      margin: 7px;
+    }
+
+    .MuiDivider-wrapperVertical {
+      padding: 0px;
+    }
+
+    & > .MuiDivider-root:nth-child(2) {
+      margin: 5px auto;
+    }
+
+    .MuiButton-textDefault {
+      text-transform: capitalize;
+      line-height: 10px;
+    }
+
+    .legal {
+      display: flex;
+      font-size: 0.7rem;
+      justify-content: space-between;
+    }
+  `
+);
 
 const useStyles = makeStyles({
 
@@ -142,6 +190,15 @@ const LoadFiles = (props) => {
         className={classes.customDataGrid}
         />
       </Box>
+       {/* Nuevo código que quieres agregar */}
+       <FooterRoot>
+        <div></div>
+        <Divider />
+        <div>
+          <div>Copyright© 2024 - Management Group S.A.</div>
+          <div></div>
+        </div>
+      </FooterRoot>
       <AppFooter /> 
       {/* <Grid container justifyContent="center" spacing={2}>
         {documents.map((document, index) => (

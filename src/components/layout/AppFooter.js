@@ -56,15 +56,7 @@ const FooterRoot = styled('footer')(
 
 const AppFooter = () => {
   return (
-    <FooterRoot>
-      <div></div>
-      <Divider />
-      <div >
-        <div>Copyright© 2024 - Management Group S.A.</div>
-        <div></div>
-
-      </div>
-    </FooterRoot>
+<div></div>
   );
 };
 
