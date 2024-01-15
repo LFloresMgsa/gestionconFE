@@ -5,7 +5,8 @@ import Fetch from '../helpers/Fetch';
 export const eventoService = {
   obtenerUsuario,
   obtenerFiles,
-  obtenerToken
+  obtenerToken,
+  obtenerFilesv2
   
 };
 
@@ -41,6 +42,27 @@ function obtenerFiles(category) {
     const encodedCategory = encodeURIComponent(category)
     // Utiliza Fetch.get para realizar una solicitud GET
     const url = `/api/gescon/documents?category=${encodedCategory}`;
+
+    console.log(url);
+    console.log(category);
+
+    return Fetch.get(url, params, options).then((res) =>
+      handleResponse(res, false)
+    );
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
+    // Puedes lanzar o devolver un objeto de error personalizado si es necesario.
+    throw error;
+  }
+}
+
+function obtenerFilesv2(category) {
+  try {
+    const options = { headers: authHeader() };
+    const params = {};
+    const encodedCategory = encodeURIComponent(category)
+    // Utiliza Fetch.get para realizar una solicitud GET
+    const url = `/api/gescon/documentos?category=${encodedCategory}`;
 
     console.log(url);
     console.log(category);

@@ -19,6 +19,7 @@ import { appThemes, appColors } from './theme/AppThemes';
 import { GlobalStyle } from './GlobalStyles';
 import AppContent from './AppContent';
 import AppTopBar from './components/layout/AppTopBar';
+import AppFooter from './components/layout/AppFooter';
 
 // Resto de tu código ...
 
@@ -112,6 +113,7 @@ function App(props) {
             <GlobalStyle theme={theme} />
             <AppTopBar />
             <AppContent {...props} viewport={viewport} />
+            <AppFooter /> 
           </BrowserRouter>
         </ThemeProvider>
       )}

@@ -6,9 +6,21 @@ import MeNavBarDisplay from '../common/others/MeNavBarDisplay';
 import { useDispatch } from 'react-redux';
 import { store } from '../../store';
 import { useTheme } from 'styled-components';
+import logoImage from '../../imagenes/mgsa.jpg'
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  logo: {
+    width: '250px',  // Ajusta el ancho de tu logo según tus necesidades
+    
+    marginRight: '10px',  // Ajusta el margen derecho según tus necesidades
+  },
+});
 
 
 const AppTopBar = (props) => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { global, menuState } = store.getState();
 
@@ -34,6 +46,7 @@ const AppTopBar = (props) => {
               size="large"
             >
               <MenuIcon />
+              {/* <img src={logoImage} alt="Logo" className={classes.logo} /> */}
             </IconButton>
             {menuState.current === 'icons' && <span>{global.portalName}</span>}
           </div>
@@ -41,7 +54,7 @@ const AppTopBar = (props) => {
 
         <div className="toolbar-left">
         <Typography variant="h5" color="white" component="div">
-            Manual de Usuario - PDF
+            Sistema de Gestión de Contenido - GesCONT
           </Typography>
         </div>
 

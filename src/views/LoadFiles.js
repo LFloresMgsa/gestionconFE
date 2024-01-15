@@ -1,54 +1,149 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { eventoService } from '../services/evento.service';
 import { Typography, Grid, Paper } from '@mui/material';
-import ReactTooltip from 'react-tooltip';
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
+import { PictureAsPdf as PdfIcon } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
+import AppFooter from '../components/layout/AppFooter';
+
+const columns = [
+  {
+    field: 'icon', headerName: 'Tipo', 
+    width: 50,
+    renderCell: (params) => (
+      <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />
+    ),
+    editable: false,
+  },
+
+  {
+    field: 'fileSize',
+    headerName: 'Tamaño',
+    width: 130,
+    editable: false,
+  },
+
+  {
+    field: 'lastModified',
+    headerName: 'Fecha de Modificación',
+    width: 250,
+    editable: false,
+  },
+
+  {
+    field: 'fileName',
+    headerName: 'Nombre de Archivo',
+    width: 1000,
+    editable: false,
+  },  
+];
+
+
+const useStyles = makeStyles({
+
+  customDataGrid: {
+    '& .MuiDataGrid-cell': {
+      fontSize: '18px',  // Ajusta el tamaño de letra según tus necesidades
+    },
+    
+  },
+});
 
 const LoadFiles = (props) => {
+
+  const classes = useStyles();
+  
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [documents, setDocuments] = useState([]);
+  // const [documents, setDocuments] = useState([]);
+  const [documentos, setDocumentos] = useState([]);
   const [hoveredDocument, setHoveredDocument] = useState(null);
 
   useEffect(() => {
     const category = String(props.pCategory);
     setSelectedCategory(category);
 
-    const fetchDocumentsData = async () => {
+    // const fetchDocumentsData = async () => {
+    //   try {
+    //     const res = await eventoService.obtenerFiles(category);
+
+    //     if (res && res.files && Array.isArray(res.files) && res.files.length > 0) {
+    //       setDocuments(res.files);
+    //     } else {
+    //       console.warn('La propiedad files no es un array válido:', res.files);
+    //       setDocuments([]);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching documents:', error.message);
+    //   }
+    // };
+
+    const fetchDocumentosData = async () => {
       try {
-        const res = await eventoService.obtenerFiles(category);
+        const res = await eventoService.obtenerFilesv2(category);
 
         if (res && res.files && Array.isArray(res.files) && res.files.length > 0) {
-          setDocuments(res.files);
+          setDocumentos(res.files);
         } else {
           console.warn('La propiedad files no es un array válido:', res.files);
-          setDocuments([]);
+          setDocumentos([]);
         }
       } catch (error) {
         console.error('Error fetching documents:', error.message);
       }
     };
 
+
     if (category) {
-      fetchDocumentsData();
+      // fetchDocumentsData();
+      fetchDocumentosData();
     } else {
-      setDocuments([]);
+      // setDocuments([]);
+      setDocumentos([]);
     }
   }, [props.pCategory]);
 
   const handleDocumentClick = (document) => {
+
+
+
     const encodedCategory = encodeURIComponent(selectedCategory);
     const encodedDocument = encodeURIComponent(document);
     const documentUrl = `http://localhost:5000/api/gescon/pdf?category=${encodedCategory}&document=${encodedDocument}`;
     window.open(documentUrl, '_blank');
   };
 
+  const handleEvent = (params, event, details) => {
+    handleDocumentClick(params.row.fileName)
+
+  };
+
+
   return (
     <div>
-      <Typography variant="h4" align="center" style={{ marginRight: '0px', marginBottom: '10px' }}>
-        DOCUMENTOS
+      <Typography variant="h5" align="center" style={{ marginRight: '0px', marginBottom: '10px' }}>
+        Documentos
       </Typography>
-      <Grid container justifyContent="center" spacing={2}>
+
+      <Box sx={{ height: '100%', width: '100%' }}>
+        <DataGrid
+          rows={documentos}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 10,
+              },
+            },
+          }}
+          pageSizeOptions={[10]}
+          onRowDoubleClick={handleEvent}
+          disableRowSelectionOnClick
+        className={classes.customDataGrid}
+        />
+      </Box>
+      <AppFooter /> 
+      {/* <Grid container justifyContent="center" spacing={2}>
         {documents.map((document, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Paper
@@ -73,7 +168,7 @@ const LoadFiles = (props) => {
             </Paper>
           </Grid>
         ))}
-      </Grid>
+      </Grid> */}
     </div>
   );
 };
