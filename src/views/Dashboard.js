@@ -112,7 +112,7 @@ const Dashboard = () => {
         <div></div>
         <Divider />
         <div>
-          <div>Copyright© 2024 - Management Group S.A.</div>
+          <div>Copyright© 2024 - Management Group S.AA.</div>
           <div></div>
         </div>
       </FooterRoot>
