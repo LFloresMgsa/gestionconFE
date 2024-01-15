@@ -44,7 +44,7 @@ const useStyles = makeStyles({
 
   customDataGrid: {
     '& .MuiDataGrid-cell': {
-      fontSize: '18px',  // Ajusta el tamaño de letra según tus necesidades
+      fontSize: '15px',  // Ajusta el tamaño de letra según tus necesidades
     },
     
   },

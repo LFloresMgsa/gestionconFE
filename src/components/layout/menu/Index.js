@@ -11,8 +11,8 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   logo: {
-    width: '250px',  // Ajusta el ancho de tu logo según tus necesidades
-    marginRight: '0px',  // Ajusta el margen derecho según tus necesidades
+    width: '200px',  // Ajusta el ancho de tu logo según tus necesidades
+    marginleft: '10px',  // Ajusta el margen derecho según tus necesidades
   },
 });
 
