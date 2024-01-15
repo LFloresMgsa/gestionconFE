@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { eventoService } from '../services/evento.service';
-import { Typography, Grid, Paper } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Typography, Box, Paper, InputAdornment, TextField, Divider } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { PictureAsPdf as PdfIcon } from '@mui/icons-material';
-import { makeStyles } from '@mui/styles';
-import AppFooter from '../components/layout/AppFooter';
 import { styled, css } from '@mui/system';
-import Divider from '@mui/material/Divider';
+import AppFooter from '../components/layout/AppFooter';
+import { makeStyles } from '@mui/styles';
+import SearchIcon from '@mui/icons-material/Search';
+
 const columns = [
   {
-    field: 'icon', headerName: 'Tipo', 
+    field: 'icon', headerName: 'Tipo',
     width: 50,
     renderCell: (params) => (
       <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />
@@ -37,7 +37,7 @@ const columns = [
     headerName: 'Nombre de Archivo',
     width: 1000,
     editable: false,
-  },  
+  },
 ];
 
 const FooterRoot = styled('footer')(
@@ -82,7 +82,7 @@ const FooterRoot = styled('footer')(
 
     .legal {
       display: flex;
-      font-size: 0.7rem;
+      font-size: 0.6  rem;
       justify-content: space-between;
     }
   `
@@ -94,37 +94,19 @@ const useStyles = makeStyles({
     '& .MuiDataGrid-cell': {
       fontSize: '15px',  // Ajusta el tamaño de letra según tus necesidades
     },
-    
+
   },
 });
 
 const LoadFiles = (props) => {
-
   const classes = useStyles();
-  
   const [selectedCategory, setSelectedCategory] = useState('');
-  // const [documents, setDocuments] = useState([]);
   const [documentos, setDocumentos] = useState([]);
   const [hoveredDocument, setHoveredDocument] = useState(null);
-
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     const category = String(props.pCategory);
     setSelectedCategory(category);
-
-    // const fetchDocumentsData = async () => {
-    //   try {
-    //     const res = await eventoService.obtenerFiles(category);
-
-    //     if (res && res.files && Array.isArray(res.files) && res.files.length > 0) {
-    //       setDocuments(res.files);
-    //     } else {
-    //       console.warn('La propiedad files no es un array válido:', res.files);
-    //       setDocuments([]);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching documents:', error.message);
-    //   }
-    // };
 
     const fetchDocumentosData = async () => {
       try {
@@ -141,20 +123,14 @@ const LoadFiles = (props) => {
       }
     };
 
-
     if (category) {
-      // fetchDocumentsData();
       fetchDocumentosData();
     } else {
-      // setDocuments([]);
       setDocumentos([]);
     }
   }, [props.pCategory]);
 
   const handleDocumentClick = (document) => {
-
-
-
     const encodedCategory = encodeURIComponent(selectedCategory);
     const encodedDocument = encodeURIComponent(document);
     const documentUrl = `http://localhost:5000/api/gescon/pdf?category=${encodedCategory}&document=${encodedDocument}`;
@@ -162,20 +138,63 @@ const LoadFiles = (props) => {
   };
 
   const handleEvent = (params, event, details) => {
-    handleDocumentClick(params.row.fileName)
-
+    handleDocumentClick(params.row.fileName);
   };
+
+  const filteredDocumentos = documentos.filter((documento) =>
+    documento.fileName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
 
   return (
     <div>
-      <Typography variant="h5" align="center" style={{ marginRight: '0px', marginBottom: '10px' }}>
-        Documentos
+      <Typography variant="h5" align="center" style={{ marginRight: '0px', marginBottom: '10px', fontWeight:'bold' }}>
+        DOCUMENTOS
       </Typography>
+      <TextField
+        label="Búsqueda por nombre de archivo"
+        variant="outlined"
+        autoFocus
+        fullWidth
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" style={{ marginRight: '8px' }}>
+              <SearchIcon style={{ color: '#8b0000' }} />
+            </InputAdornment>
+          ),
+        }}
+        InputLabelProps={{
+          style: {
+            color: '#8b0000', // Cambia el color del texto de la etiqueta cuando el TextField está enfocado
+            
+          },
+        }}
+        style={{
+          marginBottom: '15px',
+          marginTop: '10px',
+          padding: '5px',
+          width: '850px',
+          borderRadius: '10px',
 
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#8b0000', // Color del contorno predeterminado
+            },
+            '&:hover fieldset': {
+              borderColor: '#8b0000', // Color del contorno al pasar el ratón
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#ff0000', // Cambia este color al que desees cuando el TextField está enfocado
+            },
+          },
+        }}
+
+      />
       <Box sx={{ height: '100%', width: '100%' }}>
         <DataGrid
-          rows={documentos}
+          rows={filteredDocumentos}
           columns={columns}
           initialState={{
             pagination: {
@@ -187,48 +206,26 @@ const LoadFiles = (props) => {
           pageSizeOptions={[10]}
           onRowDoubleClick={handleEvent}
           disableRowSelectionOnClick
-        className={classes.customDataGrid}
+          className={classes.customDataGrid}
+          sx={{
+            maxWidth: '100%', // Evita que el DataGrid sea más ancho que el contenedor
+            marginBottom: '20px', // Puedes ajustar este margen según tus necesidades
+          }}
         />
       </Box>
-       {/* Nuevo código que quieres agregar */}
-       <FooterRoot>
+
+      {/* Nuevo código que quieres agregar */}
+      <FooterRoot>
         <div></div>
         <Divider />
         <div>
-          <div>Copyright© 2024 - Management Group S.A.</div>
+          <div style={{fontWeight:'bold' }}>Copyright© 2024 - Management Group S.A.</div>
           <div></div>
         </div>
       </FooterRoot>
-      <AppFooter /> 
-      {/* <Grid container justifyContent="center" spacing={2}>
-        {documents.map((document, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Paper
-              onClick={() => handleDocumentClick(document)}
-              onMouseEnter={() => setHoveredDocument(document)}
-              onMouseLeave={() => setHoveredDocument(null)}
-              style={{
-                cursor: 'pointer',
-                transition: 'transform 0.3s ease-in-out',
-                transform: hoveredDocument === document ? 'scale(1.1)' : 'scale(1)',
-                padding: '10px',
-                textAlign: 'center',
-                border: '2.9px solid #8b0000',
-                overflow: 'hidden',
-                height: document.length < 35 ? 'auto' : '120px',
-              }}
-            >
-              <FontAwesomeIcon icon={faFilePdf} style={{ marginBottom: '0px', color: 'red', marginRight: '0px', fontSize: '1.4em' }} />
-              <Typography variant="body1" style={{ fontSize: '14px' }}>
-                <strong>{index + 1}</strong>. {document}
-              </Typography>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid> */}
+      <AppFooter />
     </div>
   );
 };
-
 
 export { LoadFiles };

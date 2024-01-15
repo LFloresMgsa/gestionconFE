@@ -103,7 +103,7 @@ const Dashboard = () => {
     <Container component="main" maxWidth="xs" sx={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
       <CssBaseline />
       <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <StyledImage src={fondo} alt="" />
+        <StyledImage src="" alt="" />
         <WhiteBackground loading={loading.toString()} />
         {loading && <StyledLoadingCircle />} {/* Muestra el LoadingCircle solo cuando loading es true */}
         <div>{/* Contenido adicional */}</div>
@@ -112,7 +112,7 @@ const Dashboard = () => {
         <div></div>
         <Divider />
         <div>
-          <div>Copyright© 2024 - Management Group S.AA.</div>
+          <div style={{fontWeight:'bold' }}>Copyright© 2024 - Management Group S.A.</div>
           <div></div>
         </div>
       </FooterRoot>

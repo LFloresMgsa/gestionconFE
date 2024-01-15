@@ -10,11 +10,18 @@ import Cookies from 'universal-cookie';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   logo: {
-    width: '200px',  // Ajusta el ancho de tu logo según tus necesidades
-    marginleft: '10px',  // Ajusta el margen derecho según tus necesidades
+    width: '210px',
+    margin: '0 15px',
+    borderBottom: '2px solid #dcdcdc', // Añade un borde inferior a la imagen
   },
 });
+
 
 
 
