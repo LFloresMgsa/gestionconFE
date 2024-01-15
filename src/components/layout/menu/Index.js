@@ -2,14 +2,23 @@ import React, { Fragment } from 'react';
 import MenuItems from './MenuItems';
 import { css, useTheme } from 'styled-components';
 import { styled } from '@mui/material/styles';
-
+import logoImage from '../../../imagenes/mgsa.jpg'
 import { Avatar, Chip, Drawer } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import Cookies from 'universal-cookie';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  logo: {
+    width: '250px',  // Ajusta el ancho de tu logo según tus necesidades
+    marginRight: '0px',  // Ajusta el margen derecho según tus necesidades
+  },
+});
 
 
-const cookies = new Cookies();
+
+const cookies = new Cookies();
 
 
 const StyledMenu = styled(Drawer)(
@@ -20,14 +29,14 @@ const StyledMenu = styled(Drawer)(
     width: ${state.width};
     position: sticky;
     top: 50px;
-    border-top: 0;
+    border-top: 10;
 
     .MuiPaper-root {
       border-top: 0;
       width: ${state.width};
       margin-top: ${['xs', 'sm'].includes(viewport) ? '0px' : '50px'};
       justify-content: space-between;
-      background-color: #d3d3d3;
+      background-color: white;
     }
 
     #menu-dev-info {
@@ -146,9 +155,9 @@ const _temp_tabs = [
         isDeleted: false,
         wasUpdated: false,
         tabChildren: [],
-      },    
-     
-            
+      },
+
+
     ],
 
   },
@@ -201,39 +210,46 @@ const Menu = (props) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { viewport, state, global } = props;
-  
+
+  const classes = useStyles();
 
   let tabs = _temp_tabs
-  .map(item => {
-    const subarrayFiltrado = item.tabChildren.filter(subitem => subitem.authorizedRolesAllString.indexOf("All") > 0);
-    return { ...item, tabChildren: subarrayFiltrado };
-  })
-  .filter(_temp_tabs => _temp_tabs.authorizedRolesAllString.indexOf("All") > 0);
+    .map(item => {
+      const subarrayFiltrado = item.tabChildren.filter(subitem => subitem.authorizedRolesAllString.indexOf("All") > 0);
+      return { ...item, tabChildren: subarrayFiltrado };
+    })
+    .filter(_temp_tabs => _temp_tabs.authorizedRolesAllString.indexOf("All") > 0);
 
 
 
-if (cookies.get('Sgm_cUsuario') != "" && cookies.get('Sgm_cUsuario') != null) {
+  if (cookies.get('Sgm_cUsuario') != "" && cookies.get('Sgm_cUsuario') != null) {
 
-  tabs = _temp_tabs
-  .map(item => {
-    const subarrayFiltrado = item.tabChildren.filter(subitem => subitem.authorizedRolesAllString.indexOf(cookies.get('Sgm_cPerfil')) > 0);
-    return { ...item, tabChildren: subarrayFiltrado };
-  })    
-  .filter(_temp_tabs => _temp_tabs.authorizedRolesAllString.indexOf(cookies.get('Sgm_cPerfil')) > 0);
-  }
+    tabs = _temp_tabs
+      .map(item => {
+        const subarrayFiltrado = item.tabChildren.filter(subitem => subitem.authorizedRolesAllString.indexOf(cookies.get('Sgm_cPerfil')) > 0);
+        return { ...item, tabChildren: subarrayFiltrado };
+      })
+      .filter(_temp_tabs => _temp_tabs.authorizedRolesAllString.indexOf(cookies.get('Sgm_cPerfil')) > 0);
+  }
 
   const sortMenuItems = tabs.sort((a, b) => (a.tabOrder > b.tabOrder ? 1 : -1));
 
   const drawerContent = (
     <Fragment>
       <div id="menu-tabs">
+        <div>.</div>
+        <img src={logoImage} alt="Logo" className={classes.logo} />
+        <div>.</div>
         <MenuItems
           viewport={viewport}
           menuState={state}
           items={sortMenuItems}
+
         />
+
       </div>
     </Fragment>
+
   );
 
   const container = !window ? () => window().document.body : undefined;
@@ -257,7 +273,13 @@ if (cookies.get('Sgm_cUsuario') != "" && cookies.get('Sgm_cUsuario') != null) {
         sx={{ display: { sm: 'block', md: 'none' } }}
       >
         {drawerContent}
+
+
+
       </StyledMenu>
+
+
+
       <StyledMenu
         state={state}
         viewport={viewport}
@@ -266,7 +288,10 @@ if (cookies.get('Sgm_cUsuario') != "" && cookies.get('Sgm_cUsuario') != null) {
         sx={{ display: { xs: 'none', md: 'block' } }}
       >
         {drawerContent}
+
       </StyledMenu>
+
+
     </>
   );
 };
