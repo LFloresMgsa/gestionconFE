@@ -43,8 +43,8 @@ function obtenerFiles(category) {
     // Utiliza Fetch.get para realizar una solicitud GET
     const url = `/api/gescon/documents?category=${encodedCategory}`;
 
-    console.log(url);
-    console.log(category);
+    //console.log(url);
+    //console.log(category);
 
     return Fetch.get(url, params, options).then((res) =>
       handleResponse(res, false)
@@ -64,8 +64,8 @@ function obtenerFilesv2(category) {
     // Utiliza Fetch.get para realizar una solicitud GET
     const url = `/api/gescon/documentos?category=${encodedCategory}`;
 
-    console.log(url);
-    console.log(category);
+    //console.log(url);
+    //console.log(category);
 
     return Fetch.get(url, params, options).then((res) =>
       handleResponse(res, false)
