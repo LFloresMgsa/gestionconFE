@@ -243,10 +243,10 @@ const Menu = (props) => {
 
   const drawerContent = (
     <Fragment>
+      
       <div id="menu-tabs">
-        <div>.</div>
-        <img src={logoImage} alt="Logo" className={classes.logo} />
-        <div>.</div>
+
+      <img src={logoImage} alt="Logo" className={classes.logo} />  
         <MenuItems
           viewport={viewport}
           menuState={state}
@@ -254,7 +254,10 @@ const Menu = (props) => {
 
         />
 
+
+
       </div>
+      
     </Fragment>
 
   );

@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { eventoService } from '../services/evento.service';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import IconButton from '@mui/material/IconButton';
 import { Typography, Box, Paper, InputAdornment, TextField, Divider } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
 import { PictureAsPdf as PdfIcon } from '@mui/icons-material';
 import { styled, css } from '@mui/system';
 import AppFooter from '../components/layout/AppFooter';
 import { makeStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Button from '@mui/material/Button';
+import fon from '../imagenes/buscar.png'
 const columns = [
   {
     field: 'icon', headerName: 'Tipo',
@@ -104,6 +114,8 @@ const LoadFiles = (props) => {
   const [documentos, setDocumentos] = useState([]);
   const [hoveredDocument, setHoveredDocument] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   useEffect(() => {
     const category = String(props.pCategory);
     setSelectedCategory(category);
@@ -137,89 +149,159 @@ const LoadFiles = (props) => {
     window.open(documentUrl, '_blank');
   };
 
-  const handleEvent = (params, event, details) => {
-    handleDocumentClick(params.row.fileName);
+  const handleButtonClick = (item) => {
+    handleDocumentClick(item.fileName);
   };
 
   const filteredDocumentos = documentos.filter((documento) =>
     documento.fileName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentDocumentos = filteredDocumentos.slice(indexOfFirstItem, indexOfLastItem);
 
-
+  const totalPages = Math.ceil(filteredDocumentos.length / itemsPerPage);
   return (
     <div>
-      <Typography variant="h5" align="center" style={{ marginRight: '0px', marginBottom: '10px', fontWeight:'bold' }}>
-        DOCUMENTOS
-      </Typography>
-      <TextField
-        label="Búsqueda por nombre de archivo"
-        variant="outlined"
-        autoFocus
-        fullWidth
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start" style={{ marginRight: '8px' }}>
-              <SearchIcon style={{ color: '#8b0000' }} />
-            </InputAdornment>
-          ),
+      <Paper
+        sx={{
+          p: 2,
+          margin: 1,
+          maxWidth: 'auto',
+          flexGrow: 1,
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         }}
-        InputLabelProps={{
-          style: {
-            color: '#8b0000', // Cambia el color del texto de la etiqueta cuando el TextField está enfocado
-            
-          },
-        }}
-        style={{
-          marginBottom: '15px',
-          marginTop: '10px',
-          padding: '5px',
-          width: '850px',
-          borderRadius: '10px',
+      >
+        <Typography
+          variant="h5"
+          color="black"
+          align="center"  // Centra el texto
+          fontWeight="bold"  // Pone el texto en negrita
+          gutterBottom
+        >
+          ARCHIVOS
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+          <TextField
+            label="Buscar por Nom. del Archivo"
+            variant="outlined"
+            size="small"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" >
+                  <SearchIcon style={{ color: '#8b0000' }} />
+                </InputAdornment>
+              ),
+            }}
+          />
 
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: '#8b0000', // Color del contorno predeterminado
-            },
-            '&:hover fieldset': {
-              borderColor: '#8b0000', // Color del contorno al pasar el ratón
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: '#ff0000', // Cambia este color al que desees cuando el TextField está enfocado
-            },
-          },
-        }}
-
-      />
-      <Box sx={{ height: '100%', width: '100%' }}>
-        <DataGrid
-          rows={filteredDocumentos}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
+        </Box>
+        <TableContainer component={Paper}>
+          <Table aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
+                >
+                  Tipo
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
+                >
+                  Nombre del Archivo
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
+                >
+                  Fecha de Modificación
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
+                >
+                  Tamaño del Archivo
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
+                >
+                  Visualización
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {currentDocumentos.map((item, idx) => (
+                <TableRow key={`${idx}_${indexOfFirstItem + idx}`}>
+                  <TableCell align="center">
+                    <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />
+                  </TableCell>
+                  <TableCell align="center">{item.fileName}</TableCell>
+                  <TableCell align="center">{item.lastModified}</TableCell>
+                  <TableCell align="center">{item.fileSize}</TableCell>
+                  <TableCell align="center">
+                    <IconButton
+                      variant="contained"
+                      size="small"
+                      color="black"
+                      onClick={() => handleButtonClick(item)}
+                    >
+                      <img src="../imagenes/buscar.png" alt="" width="23" height="25" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {/* Agrega la paginación */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '10px', alignItems: 'center' }}>
+          <Typography variant="body2" color="textSecondary" sx={{ marginRight: '10px', fontWeight: 'bold' }}>
+            Página {currentPage} de {totalPages}
+          </Typography>
+          <Button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+            sx={{
+              marginRight: '5px',
+              color: 'black',
+              backgroundColor: '',
+              fontWeight: 'bold',
+              '&:hover': {
+                backgroundColor: '',
               },
-            },
-          }}
-          pageSizeOptions={[10]}
-          onRowDoubleClick={handleEvent}
-          disableRowSelectionOnClick
-          className={classes.customDataGrid}
-          sx={{
-            maxWidth: '100%', // Evita que el DataGrid sea más ancho que el contenedor
-            marginBottom: '20px', // Puedes ajustar este margen según tus necesidades
-          }}
-        />
-      </Box>
-
+            }}
+          >
+            <NavigateBeforeIcon />
+          </Button>
+          <Button
+            disabled={indexOfLastItem >= filteredDocumentos.length}
+            onClick={() => setCurrentPage(currentPage + 1)}
+            sx={{
+              marginRight: '5px',
+              color: 'black',
+              backgroundColor: '',
+              fontWeight: 'bold',
+              '&:hover': {
+                backgroundColor: '',
+              },
+            }}
+          >
+            <NavigateNextIcon />
+          </Button>
+        </Box>
+      </Paper>
       {/* Nuevo código que quieres agregar */}
       <FooterRoot>
         <div></div>
         <Divider />
         <div>
-          <div style={{fontWeight:'bold' }}>Copyright© 2024 - Management Group S.A.</div>
+          <div style={{ fontWeight: 'bold', fontSize: '10px' }}>Copyright© 2024 - Management Group S.A.</div>
           <div></div>
         </div>
       </FooterRoot>

@@ -119,7 +119,7 @@ const Dashboard = () => {
         <div></div>
         <Divider />
         <div>
-          <div>Copyright© 2024 - Management Group S.A.</div>
+        <div style={{ fontWeight: 'bold' , fontSize:'10px'}}>Copyright© 2024 - Management Group S.A.</div>
           <div></div>
         </div>
       </FooterRoot>
