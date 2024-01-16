@@ -253,7 +253,7 @@ const Menu = (props) => {
     </div>
 
     {/* Contenedor flex para centrar verticalmente */}
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', top: '-40px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', top: '-45px' }}>
       {/* Agrega la imagen debajo del menú */}
       <div id="menu-image">
         <img src={logoImage} alt="Logo" className={classes.logo} />
