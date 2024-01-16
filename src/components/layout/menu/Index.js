@@ -178,7 +178,7 @@ const _temp_tabs = [
     parentId: -1,
     level: 0,
     authorizedRoles: '65;-1;',
-    authorizedRolesAllString: ' Root, All, Users , Admin ',
+    authorizedRolesAllString: ' Root, Admin ',
     administratorRoles: '65;',
     tabOrder: 5,
     isVisible: true,
