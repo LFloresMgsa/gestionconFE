@@ -1,3 +1,4 @@
+//Soporte.js
 import React from 'react';
 import { Container, CssBaseline, Box, Typography } from '@mui/material';
 import fondo from '../imagenes/soporte.png';

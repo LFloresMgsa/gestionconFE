@@ -26,7 +26,7 @@ const AppRoutes = (props) => {
         render={(route) => <Login {...props} {...route} />}
       />
 
-<Route
+      <Route
         exact
         path="/soporte"
         render={(route) => <Soporte {...props} {...route} />}
