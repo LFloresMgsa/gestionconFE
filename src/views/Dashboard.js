@@ -47,7 +47,7 @@ const FooterRoot = muiStyled('footer')(
   text-align: center;
   width: 60%;  /* Ajusta el ancho según tus necesidades */
   margin-top: 10px; /* Ajusta el margen superior según tus necesidades */
-  z-index: 1; /* Asegura que esté encima de la imagen */
+  z-index: 1; /* Asegura que esté encima de la imagen. */
 
 
 
