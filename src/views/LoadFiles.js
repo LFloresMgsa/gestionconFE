@@ -18,37 +18,11 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Button from '@mui/material/Button';
 import fon from '../imagenes/buscar.png'
-const columns = [
-  {
-    field: 'icon', headerName: 'Tipo',
-    width: 50,
-    renderCell: (params) => (
-      <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />
-    ),
-    editable: false,
-  },
-
-  {
-    field: 'fileSize',
-    headerName: 'Tamaño',
-    width: 130,
-    editable: false,
-  },
-
-  {
-    field: 'lastModified',
-    headerName: 'Fecha de Modificación',
-    width: 250,
-    editable: false,
-  },
-
-  {
-    field: 'fileName',
-    headerName: 'Nombre de Archivo',
-    width: 1000,
-    editable: false,
-  },
-];
+import IconForDocx from './iconsfor/IconForWord';
+import IconForXlsx from './iconsfor/IconForExcel';
+import IconForPptx from './iconsfor/IconForPpt';
+import IconForOtherFile from './iconsfor/IconForOther';
+import IconForImagenes from './iconsfor/IconForImagenes';
 
 const FooterRoot = styled('footer')(
   ({ theme }) => css`
@@ -142,12 +116,25 @@ const LoadFiles = (props) => {
     }
   }, [props.pCategory]);
 
+
+
+
   const handleDocumentClick = (document) => {
     const encodedCategory = encodeURIComponent(selectedCategory);
     const encodedDocument = encodeURIComponent(document);
-    const documentUrl = `http://localhost:5000/api/gescon/pdf?category=${encodedCategory}&document=${encodedDocument}`;
-    window.open(documentUrl, '_blank');
+    const documentUrl = `http://localhost:5000/api/gescon/archivos?category=${encodedCategory}&document=${encodedDocument}`;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.open(documentUrl, '_system');
+    } else {
+      // Mostrar un modal con opciones personalizadas
+
+      window.open(documentUrl, '_blank')
+    }
   };
+
 
   const handleButtonClick = (item) => {
     handleDocumentClick(item.fileName);
@@ -161,6 +148,34 @@ const LoadFiles = (props) => {
   const currentDocumentos = filteredDocumentos.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(filteredDocumentos.length / itemsPerPage);
+
+  const renderFileTypeIcon = (fileName) => {
+    const fileExtension = fileName.slice(((fileName.lastIndexOf(".") - 1) >>> 0) + 2).toLowerCase();
+
+    switch (fileExtension) {
+      case 'pdf':
+        return <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />;
+      case 'docx':
+        // Agrega aquí el icono para archivos Word
+        return <IconForDocx />; // Reemplaza esto con tu propio icono o componente
+      case 'xlsx':
+        // Agrega aquí el icono para archivos Excel
+        return <IconForXlsx />; // Reemplaza esto con tu propio icono o componente
+      case 'pptx':
+        // Agrega aquí el icono para archivos PowerPoint
+        return <IconForPptx />; // Reemplaza esto con tu propio icono o componente
+      case 'jpg':
+        return <IconForImagenes />; 
+      case 'png':
+        return <IconForImagenes />; 
+        case 'jpeg':
+        return <IconForImagenes />; 
+      default:
+        // Agrega aquí el icono para otros tipos de archivos o usa el mismo de PDF
+        return <IconForOtherFile />;
+    }
+  };
+
   return (
     <div>
       <Paper
@@ -239,7 +254,7 @@ const LoadFiles = (props) => {
               {currentDocumentos.map((item, idx) => (
                 <TableRow key={`${idx}_${indexOfFirstItem + idx}`}>
                   <TableCell align="center">
-                    <PdfIcon style={{ fontSize: 30, color: 'darkred' }} />
+                    {renderFileTypeIcon(item.fileName)}
                   </TableCell>
                   <TableCell align="center">{item.fileName}</TableCell>
                   <TableCell align="center">{item.lastModified}</TableCell>

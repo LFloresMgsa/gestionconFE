@@ -30,12 +30,12 @@ const StyledLoadingCircle = styled.div`
 
 const StyledImage = styled.img`
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   object-fit: cover; // O ajusta según tus necesidades (cover, contain, etc.)
 `;
 
 const StyledImageContainer = styled.div`
-  overflow: hidden;
+  overflow-x: hidden;
 `;
 
 const FooterRoot = muiStyled('footer')(

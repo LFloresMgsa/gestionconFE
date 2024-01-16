@@ -243,25 +243,25 @@ const Menu = (props) => {
 
   const drawerContent = (
     <Fragment>
-      
-      <div id="menu-tabs">
+    <div id="menu-tabs">
+      <div>.</div>
+      <MenuItems
+        viewport={viewport}
+        menuState={state}
+        items={sortMenuItems}
+      />
+    </div>
 
-      <img src={logoImage} alt="Logo" className={classes.logo} />  
-        <MenuItems
-          viewport={viewport}
-          menuState={state}
-          items={sortMenuItems}
-
-        />
-
-
-
+    {/* Contenedor flex para centrar verticalmente */}
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', top: '-40px' }}>
+      {/* Agrega la imagen debajo del menú */}
+      <div id="menu-image">
+        <img src={logoImage} alt="Logo" className={classes.logo} />
       </div>
-      
-    </Fragment>
-
+    </div>
+  </Fragment>
   );
-
+  
   const container = !window ? () => window().document.body : undefined;
 
   return (
