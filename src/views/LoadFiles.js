@@ -225,7 +225,7 @@ const LoadFiles = (props) => {
                   Tipo
                 </TableCell>
                 <TableCell
-                  align="center"
+                  align="left"
                   sx={{ backgroundColor: 'darkred', color: 'white', fontWeight: 'bold' }}
                 >
                   Nombre del Archivo
@@ -256,7 +256,7 @@ const LoadFiles = (props) => {
                   <TableCell align="center">
                     {renderFileTypeIcon(item.fileName)}
                   </TableCell>
-                  <TableCell align="center">{item.fileName}</TableCell>
+                  <TableCell align="left">{item.fileName}</TableCell>
                   <TableCell align="center">{item.lastModified}</TableCell>
                   <TableCell align="center">{item.fileSize}</TableCell>
                   <TableCell align="center">
