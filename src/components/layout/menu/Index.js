@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   logo: {
     width: '210px',
     margin: '0 15px',
-    borderBottom: '2px solid #dcdcdc', // Añade un borde inferior a la imagen
+    borderBottom: '0px solid #dcdcdc', // Añade un borde inferior a la imagen
   },
 });
 
