@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
-import fondo from '../imagenes/fondo.png';
+import fondo from '../imagenes/FONDO_AGS_2024.jpg';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -30,9 +30,14 @@ const StyledLoadingCircle = styled.div`
 
 const StyledImage = styled.img`
   width: 100vw;
-  height: auto;
-
+  height: 100vh;
+  object-fit: cover; // O ajusta según tus necesidades (cover, contain, etc.)
 `;
+
+const StyledImageContainer = styled.div`
+  overflow: hidden;
+`;
+
 const FooterRoot = muiStyled('footer')(
   ({ theme }) => css`
   position: absolute;
@@ -103,7 +108,9 @@ const Dashboard = () => {
     <Container component="main" maxWidth="xs" sx={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
       <CssBaseline />
       <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <StyledImage src="" alt="" />
+      <StyledImageContainer>
+        <StyledImage src={fondo} alt="" />
+        </StyledImageContainer>
         <WhiteBackground loading={loading.toString()} />
         {loading && <StyledLoadingCircle />} {/* Muestra el LoadingCircle solo cuando loading es true */}
         <div>{/* Contenido adicional */}</div>
@@ -112,7 +119,7 @@ const Dashboard = () => {
         <div></div>
         <Divider />
         <div>
-          <div style={{fontWeight:'bold' }}>Copyright© 2024 - Management Group S.A.</div>
+          <div>Copyright© 2024 - Management Group S.A.</div>
           <div></div>
         </div>
       </FooterRoot>
