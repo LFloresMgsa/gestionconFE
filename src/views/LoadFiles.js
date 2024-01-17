@@ -18,11 +18,17 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Button from '@mui/material/Button';
 import fon from '../imagenes/buscar.png'
-import IconForDocx from './iconsfor/IconForWord';
-import IconForXlsx from './iconsfor/IconForExcel';
-import IconForPptx from './iconsfor/IconForPpt';
-import IconForOtherFile from './iconsfor/IconForOther';
-import IconForImagenes from './iconsfor/IconForImagenes';
+import {
+  IconForXlsx,
+  IconForImagenes,
+  IconForOtherFile,
+  IconForPptx,
+  IconForVideo,
+  IconForWinrar,
+  IconForDocx,
+  IconForZip,
+} from './export-iconos/IconComponents';
+
 
 const FooterRoot = styled('footer')(
   ({ theme }) => css`
@@ -159,19 +165,26 @@ const LoadFiles = (props) => {
         // Agrega aquí el icono para archivos Word
         return <IconForDocx />; // Reemplaza esto con tu propio icono o componente
       case 'xlsx':
-        // Agrega aquí el icono para archivos Excel
-        return <IconForXlsx />; // Reemplaza esto con tu propio icono o componente
+        return <IconForXlsx />; 
       case 'pptx':
-        // Agrega aquí el icono para archivos PowerPoint
-        return <IconForPptx />; // Reemplaza esto con tu propio icono o componente
+        return <IconForPptx />; 
       case 'jpg':
-        return <IconForImagenes />; 
+        return <IconForImagenes />;
       case 'png':
-        return <IconForImagenes />; 
-        case 'jpeg':
-        return <IconForImagenes />; 
+        return <IconForImagenes />;
+      case 'jpeg':
+        return <IconForImagenes />;
+      case 'jpe':
+        return <IconForImagenes />;
+      case 'bmp':
+        return <IconForImagenes />;
+      case 'mp4':
+        return <IconForVideo />;
+      case 'zip':
+        return <IconForZip />;
+      case 'rar':
+        return <IconForWinrar />;
       default:
-        // Agrega aquí el icono para otros tipos de archivos o usa el mismo de PDF
         return <IconForOtherFile />;
     }
   };
@@ -199,7 +212,7 @@ const LoadFiles = (props) => {
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
           <TextField
-            label="Buscar por Nom. del Archivo"
+            label="Buscar por Nombre"
             variant="outlined"
             size="small"
             value={searchTerm}

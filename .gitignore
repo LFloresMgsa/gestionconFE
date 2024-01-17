@@ -21,6 +21,8 @@ yarn.lock
 build
 /build
 *.pem
+*.mp*
+*.mov
 
 website-user-passwords.json
 deploy/NS_WebApps/*
