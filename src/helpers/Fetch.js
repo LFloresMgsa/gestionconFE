@@ -8,7 +8,7 @@ const apiHost = `${SERVICE_URL}`;
 // console.log(apiHost);
 // console.log('-----------');
 
-async function request(url, params = {}, method = '', options) {
+async function request(url, params = {}, method = 'GET', options) {
   const { currentPortalID = 0, activeTabID = 0 } = store.getState();
   let fullUrl = `${apiHost}${url}`;
   const requestOptions = { method, credentials: 'same-origin', ...options };
