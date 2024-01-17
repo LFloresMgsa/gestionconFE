@@ -23,6 +23,7 @@ build
 *.pem
 *.mp*
 *.mov
+*.mp3
 
 website-user-passwords.json
 deploy/NS_WebApps/*
