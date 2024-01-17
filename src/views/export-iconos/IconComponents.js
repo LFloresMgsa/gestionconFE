@@ -8,6 +8,7 @@ import FileIcon from '../../imagenes/icons/video.png';
 import winrar from '../../imagenes/icons/rar.png';
 import WordIcon from '../../imagenes/icons/word.png';
 import zip from '../../imagenes/icons/zip.png';
+import music from '../../imagenes/icons/music.png';
 
 export const IconForXlsx = () => {
   return <img src={ExcelIcon} alt="Icono de Excel" width="28" height="28" />;
@@ -39,4 +40,8 @@ export const IconForDocx = () => {
 
 export const IconForZip = () => {
   return <img src={zip} alt="Icono de ZIP" width="28" height="28" />;
+};
+
+export const IconForMusic = () => {
+  return <img src={music} alt="Icono" width="28" height="28" />;
 };

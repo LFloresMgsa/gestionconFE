@@ -27,6 +27,7 @@ import {
   IconForWinrar,
   IconForDocx,
   IconForZip,
+  IconForMusic,
 } from './export-iconos/IconComponents';
 
 
@@ -165,25 +166,26 @@ const LoadFiles = (props) => {
         // Agrega aquí el icono para archivos Word
         return <IconForDocx />; // Reemplaza esto con tu propio icono o componente
       case 'xlsx':
-        return <IconForXlsx />; 
+        return <IconForXlsx />;
       case 'pptx':
-        return <IconForPptx />; 
+        return <IconForPptx />;
       case 'jpg':
-        return <IconForImagenes />;
       case 'png':
-        return <IconForImagenes />;
       case 'jpeg':
-        return <IconForImagenes />;
       case 'jpe':
-        return <IconForImagenes />;
       case 'bmp':
         return <IconForImagenes />;
       case 'mp4':
+      case 'wmv':
         return <IconForVideo />;
       case 'zip':
         return <IconForZip />;
       case 'rar':
         return <IconForWinrar />;
+      case 'mp3':
+      case 'm4a':
+      case 'wav':
+        return <IconForMusic />;
       default:
         return <IconForOtherFile />;
     }
