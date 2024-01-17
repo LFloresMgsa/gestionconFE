@@ -24,7 +24,16 @@ build
 *.mp*
 *.mov
 *.mp3
-
+*.mp4
+*.exe
+*.docx
+*.pptx
+*.xlsx
+*.jpg
+*.png
+*.bmp
+*.zip
+*.pdf
 website-user-passwords.json
 deploy/NS_WebApps/*
 
