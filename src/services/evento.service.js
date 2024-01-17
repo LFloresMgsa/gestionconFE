@@ -45,7 +45,7 @@ function obtenerFilesv2(category) {
     //console.log(url);
     //console.log(category);
 
-    return Fetch.get(url, params, options).then((res) =>
+    return Fetch.post(url, params, options).then((res) =>
       handleResponse(res, false)
     );
   } catch (error) {

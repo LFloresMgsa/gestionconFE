@@ -30,6 +30,7 @@ import {
   IconForMusic,
 } from './export-iconos/IconComponents';
 
+const apiHost = `${SERVICE_URL}`;
 
 const FooterRoot = styled('footer')(
   ({ theme }) => css`
@@ -129,7 +130,7 @@ const LoadFiles = (props) => {
   const handleDocumentClick = (document) => {
     const encodedCategory = encodeURIComponent(selectedCategory);
     const encodedDocument = encodeURIComponent(document);
-    const documentUrl = `http://localhost:5000/api/gescon/archivos?category=${encodedCategory}&document=${encodedDocument}`;
+    const documentUrl = apiHost + `/api/gescon/archivos?category=${encodedCategory}&document=${encodedDocument}`;
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -139,6 +140,7 @@ const LoadFiles = (props) => {
       // Mostrar un modal con opciones personalizadas
 
       window.open(documentUrl, '_blank')
+      console.log(documentUrl);
     }
   };
 
