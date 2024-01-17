@@ -3,11 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import Dashboard from './views/Dashboard';
 
-import { Categorias } from './views/Categorias';
+import Categorias from './views/Categorias';
 import Login from './views/Login';
 import Logout from './views/Logout';
 import Soporte from './views/Soporte';
-
+import Mantenimiento from './views/Mantenimiento';
 
 const AppRoutes = (props) => {
   const { accessToken, currentUser } = props;
@@ -26,11 +26,7 @@ const AppRoutes = (props) => {
         render={(route) => <Login {...props} {...route} />}
       />
 
-      <Route
-        exact
-        path="/soporte"
-        render={(route) => <Soporte {...props} {...route} />}
-      />
+
 
       <Route
         exact
@@ -39,17 +35,29 @@ const AppRoutes = (props) => {
       />
 
       <Route
+        exact
+        path="/soporte"
+        render={(route) => <Soporte {...props} {...route} />}
+      />
+
+
+      <Route
+        exact
+        path="/mantenimiento"
+        render={(route) => <Soporte {...props} {...route} />}
+      />
+      <Route
         path="/inicio"
         render={(route) => <Dashboard {...props} {...route} />}
       />
       <Route
         path="/general"
-        render={(route) => <Categorias {...props} {...route} pCategory="general" />}
+        render={(route) => <Categorias {...props} {...route} pCategory="general" pTipo="publico" />}
 
       />
       <Route
         path="/sistemas"
-        render={(route) => <Categorias {...props} {...route} pCategory="sistemas" />}
+        render={(route) => <Categorias {...props} {...route} pCategory="sistemas" pTipo="seguro" />}
       />
     </Switch>
   );

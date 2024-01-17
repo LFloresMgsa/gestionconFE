@@ -14,7 +14,6 @@ const WhiteBackground = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
   z-index: 100;
   border: 0px solid red; /* Añade un borde rojo para verificar la posición y tamaño */
   display: ${(props) => (props.loading === 'true' ? 'block' : 'none')};
@@ -91,7 +90,7 @@ const FooterRoot = muiStyled('footer')(
     }
   `
 );
-const Dashboard = () => {
+const Mantenimiento = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -123,9 +122,8 @@ const Dashboard = () => {
           <div></div>
         </div>
       </FooterRoot>
-
     </Container>
   );
 };
 
-export default Dashboard;
+export default Mantenimiento;
