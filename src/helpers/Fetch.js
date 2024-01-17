@@ -1,20 +1,25 @@
 //fecth.js
 import { store } from '../store.js';
 
-const apiHost = 'http://localhost:5000';
+//const apiHost = 'http://localhost:5000';
+const apiHost = `${SERVICE_URL}`;
 
-async function requestv2(url, params = {}, method = 'POST', options) {
+// console.log('-----------');
+// console.log(apiHost);
+// console.log('-----------');
+
+async function request(url, params = {}, method = '', options) {
   const { currentPortalID = 0, activeTabID = 0 } = store.getState();
   let fullUrl = `${apiHost}${url}`;
   const requestOptions = { method, credentials: 'same-origin', ...options };
 
-  if (method === 'GET' || method === 'PUT' || method === 'DELETE') {
+  if (method === 'PUT' || method === 'DELETE') {
     requestOptions.headers = {
       ...requestOptions.headers,
       'Content-Type': 'application/json',
     };
     requestOptions.body = JSON.stringify(params);
-  } else if (method === 'POST') {
+  } else if (method === 'POST' || method === 'GET') {
     // Construye la URL correctamente para GET
     const queryString = objectToQueryString({ ...params });
 
@@ -28,31 +33,6 @@ async function requestv2(url, params = {}, method = 'POST', options) {
   return await fetch(fullUrl, requestOptions);
 }
 
-async function request(url, params = {}, method = 'GET', options) {
-  const { currentPortalID = 0, activeTabID = 0 } = store.getState();
-  let fullUrl = `${apiHost}${url}`;
-  const requestOptions = { method, credentials: 'same-origin', ...options };
-
-  // Añade lógica para manejar el cuerpo de la solicitud para POST, PUT y DELETE
-  if (method === 'POST' || method === 'PUT' || method === 'DELETE') {
-    requestOptions.headers = {
-      ...requestOptions.headers,
-      'Content-Type': 'application/json',
-    };
-    requestOptions.body = JSON.stringify(params);
-  } else if (method === 'GET') {
-    // Construye la URL correctamente para GET
-    const queryString = objectToQueryString({ ...params });
-
-    // Asegúrate de que la URL tenga un slash ("/") entre el host y la ruta
-    const formattedUrl = url.startsWith('/') ? url : `/${url}`;
-
-    // Concatena la cadena de consulta solo si hay parámetros
-    fullUrl = `${apiHost}${formattedUrl}${queryString ? `?${queryString}` : ''}`;
-  }
-
-  return await fetch(fullUrl, requestOptions);
-}
 
 function objectToQueryString(obj) {
   return Object.keys(obj)
@@ -69,12 +49,8 @@ function get(url, params, options) {
 }
 
 function post(url, params, options) {
-  return request(url, params, 'POST', options);
-}
-
-function postv2(url, params, options) {
   const formattedUrl = url.startsWith('/') ? url : `/${url}`;
-  return requestv2(formattedUrl, params, 'POST', options);
+  return request(formattedUrl, params, 'POST', options);
 }
 
 function update(url, params, options) {
@@ -90,5 +66,4 @@ export default {
   post,
   update,
   remove,
-  postv2,
 };
