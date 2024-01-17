@@ -1,7 +1,7 @@
 //fecth.js
 import { store } from '../store.js';
 
-//const apiHost = 'http://localhost:5000';
+//const apiHost = 'http://172.16.30.51:5000';
 const apiHost = `${SERVICE_URL}`;
 
 
@@ -14,11 +14,15 @@ async function request(url, params = {}, method = 'POST', options) {
   let _portalID = params.portalID || currentPortalID;
   let _tabID = params.tabID || activeTabID;
 
-  url +=   objectToQueryString({...params});
+  //url +=  '?' + objectToQueryString({...params});
 
-  // console.log('-----------');
-  // console.log(apiHost + url);
-  // console.log('-----------');
+  //  console.log('-----------');
+  //  console.log(`${SERVICE_URL}`);
+  //  console.log(apiHost );
+  //  console.log(url);
+  //  console.log(_options);
+   
+  //  console.log('-----------');
 
   return await fetch(apiHost + url, _options);
 }

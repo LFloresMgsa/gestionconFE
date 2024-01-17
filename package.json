@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack serve --open --config webpack.dev.js",
-        "build": "webpack --config webpack.config.js",
+        "build": "webpack --config webpack.live.js",
         "lint": "standard",
         "lint-fix": "standard --fix"
     },
