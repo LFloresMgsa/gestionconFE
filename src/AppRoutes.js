@@ -20,11 +20,11 @@ const AppRoutes = (props) => {
       </Route>
 
 
-      <Route
+      {/* <Route
         exact
         path="/login"
         render={(route) => <Login {...props} {...route} />}
-      />
+      /> */}
 
 
 
