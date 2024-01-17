@@ -168,6 +168,9 @@ const LoadFiles = (props) => {
         // Agrega aquí el icono para archivos Word
         return <IconForDocx />; // Reemplaza esto con tu propio icono o componente
       case 'xlsx':
+      case 'xls':
+      case 'xlsm':
+      case 'xml':
         return <IconForXlsx />;
       case 'pptx':
         return <IconForPptx />;

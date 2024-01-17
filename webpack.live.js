@@ -15,7 +15,7 @@ module.exports = merge(common, {
         NODE_ENV: JSON.stringify('production'),
       },
       BUILD_ENV: JSON.stringify('production'),
-      SERVICE_URL: JSON.stringify('http://172.16.30.51:5000'),
+      SERVICE_URL: JSON.stringify('//172.16.30.51:5000'),
     }),
   ],
 });
