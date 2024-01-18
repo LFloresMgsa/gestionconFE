@@ -137,12 +137,13 @@ const Login = () => {
 		<Container component="main" maxWidth="xs" style={{ border: '1.5px solid #8b0000', borderRadius: '5px', padding: '16px' }}>
 			<Paper elevation={0}>
 				<form>
-					<label style={{ fontWeight: 'bold', fontSize: '1.2em', textAlign: 'center' }}>Ingreso al Sistema</label>
-
-					{/* Etiqueta y campo de Usuario */}
-					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				
+					<label style={{ fontWeight: 'bold', fontSize: '1.2em', textAlign: 'center' , color:'darkred'}}>Ingreso al Sistema</label>
+					<div>.</div>
+					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', textAlign: 'left', fontWeight: 'bold' }}>
+						<label htmlFor="username">Usuario:</label>
 						<TextField
-							label="Usuario"
+							id="username"
 							autoFocus
 							variant="outlined"
 							margin="normal"
@@ -162,12 +163,13 @@ const Login = () => {
 							autoComplete="username"
 						/>
 					</div>
-
 					{/* Etiqueta y campo de Contraseña */}
-					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-20px' }}>
+					<div>.</div>
+					<div style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', textAlign: 'left', marginTop: '-20px', fontWeight: 'bold' }}>
+						
+						<label htmlFor="username">Contraseña:</label>
 						<TextField
 							id="password"
-							label="Contraseña"
 							type={showPassword ? 'text' : 'password'}
 							variant="outlined"
 							margin="normal"
