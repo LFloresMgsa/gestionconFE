@@ -92,7 +92,7 @@ const Login = () => {
 				throw "Error: Token no existe";
 			}
 
-			let _body = { Accion: "BUSCARREGISTRO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
+			let _body = { Accion: "VALIDARUSUARIO", Sgm_cUsuario: username, Sgm_cContrasena: md5(password) };
 			let _result;
 
 			// Si encontró el token ingresa al login
