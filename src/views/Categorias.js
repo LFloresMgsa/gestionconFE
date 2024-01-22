@@ -4,17 +4,53 @@ import fondo from '../imagenes/fondotodos.png';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-
+import CryptoJS from 'crypto-js';
 
 class Categorias extends Component {
 
   componentDidMount() {
+
+    //---------------------------------
+    // Función para desencriptar
+    // Obtén la cadena de consulta de la URL
+    const queryString = window.location.search;
+
+    // Parsea la cadena de consulta para obtener los parámetros
+    const urlParams = new URLSearchParams(queryString);
+
+    // Obtiene el valor del parámetro 'path'
+    const security = urlParams.get('seg');
+
+    //---------------------------------
+    // console.log("Valor de 'seg todo path': ", security);
+
+
+    // const bytesDesencriptados = CryptoJS.AES.decrypt(security, "977611");
+    // console.log("Bytes desencriptados:", bytesDesencriptados.toString());
+
+
+    // try {
+    //   const cadenaDesencriptada = CryptoJS.enc.Utf8.stringify(bytesDesencriptados);
+    //   console.log("Cadena desencriptada:", cadenaDesencriptada);
+    // } catch (error) {
+    //   console.error("Error al convertir a UTF-8:", error.message);
+    // }
+
+    // // Extraer el valor de "seg"
+    // const segValor = new URLSearchParams(cadenaDesencriptada).get("seg");
+    // console.log("Valor de 'seg': ", segValor);
+    //---------------------------------
+
+
+
     if (!cookies.get('Sgm_cUsuario')) {
 
-//console.log(this.props.pTipo );
+      //console.log(this.props.pTipo );
 
-      if (this.props.pTipo == "seguro") {
-        window.location.href = "./inicio";
+      if (security == 'true') {
+
+
+        // window.location.href = "./inicio";
       }
 
     }

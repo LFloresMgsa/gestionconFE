@@ -104,6 +104,7 @@ const LoadFiles = (props) => {
   const itemsPerPage = 10;
   useEffect(() => {
 
+    //---------------------------------
     // Obtén la cadena de consulta de la URL
     const queryString = window.location.search;
 
@@ -245,8 +246,8 @@ const LoadFiles = (props) => {
         <Typography
           variant="h6"
           color="black"
-          align="left" 
-          fontSize="16px" 
+          align="left"
+          fontSize="16px"
           fontWeight="normal"  // Pone el texto en negrita
           gutterBottom
         >

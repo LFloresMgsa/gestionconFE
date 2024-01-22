@@ -51,6 +51,7 @@
         "babel-core": "^6.26.3",
         "babel-preset-react": "^6.24.1",
         "code-complexity": "^4.1.0",
+        "crypto-js": "^4.2.0",
         "date-fns": "^2.19.0",
         "dompurify": "^2.3.6",
         "history": "^4.10.1",

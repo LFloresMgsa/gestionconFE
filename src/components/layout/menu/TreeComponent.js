@@ -30,7 +30,7 @@ const TreeComponent = () => {
     const BuscarDirectorios = async () => {
       try {
         const directorio = await eventoService.obtenerDirectorios();
-        console.log(directorio);
+        //console.log(directorio);
 
 
         //------------- filtra array x roles -----------------------
@@ -61,7 +61,7 @@ const TreeComponent = () => {
     <TreeItem
       key={nodes.id}
       nodeId={nodes.id.toString()}
-      label={nodes.tabName}
+      label={nodes.tabName.toLowerCase()}
       
       onClick={() => {
         if (!nodes.tabChildren || nodes.tabChildren.length === 0) {
