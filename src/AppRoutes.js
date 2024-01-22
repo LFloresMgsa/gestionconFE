@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Dashboard from './views/Dashboard';
@@ -9,8 +9,31 @@ import Logout from './views/Logout';
 import Soporte from './views/Soporte';
 import Mantenimiento from './views/Mantenimiento';
 
+
 const AppRoutes = (props) => {
   const { accessToken, currentUser } = props;
+  
+
+
+  // const plocation = useLocation();
+
+  // useEffect(() => {
+  //   const currentUrl = window.location.href;
+  //   const pathIndex = currentUrl.indexOf('path=');
+  //   if (pathIndex !== -1) {
+  //     const pathValue = currentUrl.substring(pathIndex + 5); // 5 es la longitud de 'path='
+  //     setCurrentPage(pathValue);
+  //   }
+
+  //   //console.log(plocation.pathname);
+  //   //console.log(currentPage);    
+
+  //   if (plocation.pathname !== '/categoria?path=' + currentPage && plocation.pathname != '/categoria' && plocation.pathname !='/' ) {
+  //    // window.location.reload();
+  //   }
+
+  // }, [plocation]);
+
 
   return (
     <Switch>
@@ -20,12 +43,11 @@ const AppRoutes = (props) => {
       </Route>
 
 
-      {/* <Route
-        exact
-        path="/login"
-        render={(route) => <Login {...props} {...route} />}
-      /> */}
+      <Route
+        path="/categoria"
+        render={(route) => <Categorias {...props} {...route} pCategory={""} pTipo="publico" />}
 
+      />
 
 
       <Route
@@ -51,34 +73,18 @@ const AppRoutes = (props) => {
         render={(route) => <Dashboard {...props} {...route} />}
       />
       <Route
-        path="/general"
-        render={(route) => <Categorias {...props} {...route} pCategory="general" pTipo="publico" />}
+        path="/gerencia"
+        render={(route) => <Categorias {...props} {...route} pCategory="" pTipo="publico" />}
 
       />
       <Route
         path="/sistemas"
-        render={(route) => <Categorias {...props} {...route} pCategory="sistemas" pTipo="seguro" />}
+        render={(route) => <Categorias {...props} {...route} pCategory="" pTipo="seguro" />}
       />
     </Switch>
   );
 
-  // return accessToken.token ? (
-  //   <Switch>
-  //     <Route
-  //       path="/dashboard"
-  //       render={(route) => <Dashboard {...props} {...route} />}
-  //     />
-  //   </Switch>
-  // ) : (
-  //   !currentUser.detail && (
-  //     <Switch>
-  //       <Route
-  //         path="/login"
-  //         render={(route) => <Login {...props} {...route} />}
-  //       />
-  //     </Switch>
-  //   )
-  // );
+
 };
 
 export default AppRoutes;

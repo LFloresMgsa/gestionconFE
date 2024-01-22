@@ -7,6 +7,7 @@ import AppRoutes from './AppRoutes';
 import Menu from './components/layout/menu/Index';
 import ComponentAlert from './components/common/others/ComponentAlert';
 
+
 const AppBarOffset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +51,7 @@ function AppContent(props) {
 
   return (
     <div className={classes.root}>
+      
       <Menu
         viewport={viewport}
         state={menuState}

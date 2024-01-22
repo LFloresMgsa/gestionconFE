@@ -5,7 +5,8 @@ import Fetch from '../helpers/Fetch';
 export const eventoService = {
   obtenerUsuario,
   obtenerToken,
-  obtenerFilesv2
+  obtenerFilesv2,
+  obtenerDirectorios
   
 };
 
@@ -17,6 +18,19 @@ function obtenerToken(dataJson) {
   return Fetch.post(url, params, options).then((res) =>
 
   
+    handleResponse(res, false)
+  );
+}
+function obtenerDirectorios() {
+
+
+  const options = { headers: authHeader()};
+  const params = {};
+
+
+
+  const url = `/api/gescon/directorios`;
+  return Fetch.get(url, params, options).then((res) =>
     handleResponse(res, false)
   );
 }

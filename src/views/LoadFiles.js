@@ -99,11 +99,31 @@ const LoadFiles = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   useEffect(() => {
-    const category = String(props.pCategory);
+
+    // Obtén la cadena de consulta de la URL
+    const queryString = window.location.search;
+
+    // Parsea la cadena de consulta para obtener los parámetros
+    const urlParams = new URLSearchParams(queryString);
+
+    // Obtiene el valor del parámetro 'path'
+    const pathValue = urlParams.get('path');
+
+    //---------------------------------
+
+
+    const category = String(pathValue);
+
+
     setSelectedCategory(category);
 
     const fetchDocumentosData = async () => {
       try {
+
+
+        //console.log(category);
+
+
         const res = await eventoService.obtenerFilesv2(category);
 
         if (res && res.files && Array.isArray(res.files) && res.files.length > 0) {
@@ -140,7 +160,7 @@ const LoadFiles = (props) => {
       // Mostrar un modal con opciones personalizadas
 
       window.open(documentUrl, '_blank')
-      console.log(documentUrl);
+      //console.log(documentUrl);
     }
   };
 
