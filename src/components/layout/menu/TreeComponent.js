@@ -62,9 +62,10 @@ const TreeComponent = () => {
       key={nodes.id}
       nodeId={nodes.id.toString()}
       label={nodes.tabName}
-      onDoubleClick={() => {
+      
+      onClick={() => {
         if (!nodes.tabChildren || nodes.tabChildren.length === 0) {
-          handleDoubleClick(nodes.routeName);
+          handleNodeClick(nodes.routeName);
         }
       }}
     >
@@ -72,7 +73,7 @@ const TreeComponent = () => {
     </TreeItem>
   );
 
-  const handleDoubleClick = (routeName) => {
+  const handleNodeClick = (routeName) => {
     
     //console.log('Abrir URL:', routeName);
     window.location.href = routeName;

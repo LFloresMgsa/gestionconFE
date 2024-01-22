@@ -97,6 +97,10 @@ const LoadFiles = (props) => {
   const [hoveredDocument, setHoveredDocument] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [urlActual, setUrlActual] = useState('');
+
+
   const itemsPerPage = 10;
   useEffect(() => {
 
@@ -109,6 +113,7 @@ const LoadFiles = (props) => {
     // Obtiene el valor del parámetro 'path'
     const pathValue = urlParams.get('path');
 
+    setUrlActual(pathValue);
     //---------------------------------
 
 
@@ -237,6 +242,17 @@ const LoadFiles = (props) => {
         >
           ARCHIVOS
         </Typography>
+        <Typography
+          variant="h6"
+          color="black"
+          align="left" 
+          fontSize="16px" 
+          fontWeight="normal"  // Pone el texto en negrita
+          gutterBottom
+        >
+          Directorio: {urlActual}
+        </Typography>
+
         <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
           <TextField
             label="Buscar por Nombre"
