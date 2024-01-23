@@ -34,6 +34,7 @@ build
 *.bmp
 *.zip
 *.pdf
+*.jpeg
 website-user-passwords.json
 deploy/NS_WebApps/*
 
