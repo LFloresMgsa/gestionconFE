@@ -162,7 +162,7 @@ const MeNavBarDisplay = (props) => {
           onClick={handleMenu}
           startIcon={<AccountCircleOutlinedIcon />}
         >
-          {isLoged ? `${username} LOGOUT` : "LOGIN"}
+          {isLoged ? `${username} CERRAR` : "INGRESAR"}
         </Button>
       </Box>
       <StyledMenu
