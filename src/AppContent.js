@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
     '& .content': {
       width: '100%',
-      marginTop : '-110px'
     },
 
     // '& .contentsm': {

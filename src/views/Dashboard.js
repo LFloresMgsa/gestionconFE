@@ -107,9 +107,9 @@ const Dashboard = () => {
 
   return (
     <>
-          <div className="container" >
+          <div className="container" style={{marginTop:'-20px'}} >
             <div className="image-container">
-              <img className="centered-image" src={fondo} alt="campeonato" />
+              <img className="centered-image" src={fondo} alt="" />
             </div>
           </div>
           <FooterRoot >
