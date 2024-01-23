@@ -119,7 +119,7 @@ const Login = () => {
 				setError('');
 
 				if (cookies.get('token')) {
-					window.location.href = "./inicio";
+					window.location.href = "./gestcon";
 				}
 			}
 		} catch (error) {

@@ -33,7 +33,7 @@ class Categorias extends Component {
         if (_valor == true) {
 
           //console.log("entro redireccionamiento");
-          window.location.href = "./inicio";
+          window.location.href = "./gestcon";
         }
 
       }
