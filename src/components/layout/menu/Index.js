@@ -42,7 +42,7 @@ const StyledMenu = styled(Drawer)(
     .MuiPaper-root {
       border-top: 0;
       width: ${state.width};
-      margin-top: ${['xs', 'sm'].includes(viewport) ? '0px' : '50px'};
+      margin-top: ${['xs', 'sm'].includes(viewport) ? '0px' : '0px'};
       justify-content: space-between;
       background-color: white;
     }
@@ -97,7 +97,7 @@ const Menu = (props) => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', top: '-45px' }}>
         {/* Agrega la imagen debajo del menú */}
         <div id="menu-image">
-          <img src={logoImage} alt="Logo" className={classes.logo} />
+          <img src={""} alt="" className={classes.logo} />
         </div>
       </div>
     </Fragment>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
-import fondo from '../imagenes/FONDO_AGS_2024.jpg';
+import fondo from '../imagenes/pantallausuariomgsa.jpg';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -30,7 +30,7 @@ const StyledLoadingCircle = styled.div`
 
 const StyledImage = styled.img`
   width: 100vw;
-  height: 90vh;
+  height: 85vh;
   object-fit: cover; // O ajusta según tus necesidades (cover, contain, etc.)
 `;
 

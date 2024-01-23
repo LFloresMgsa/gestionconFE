@@ -8,6 +8,13 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
+import Typography from '@mui/material/Typography';
+import FolderIcon from '@mui/icons-material/Folder';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+
+import FolderOpen from '@mui/icons-material/FolderOpenOutlined';
+import FolderNew from '@mui/icons-material/CreateNewFolderOutlined';
+
 const TreeComponent = () => {
 
   const [_directorio, setDatos] = useState([]); // Estado para almacenar los datos, inicializado como null
@@ -57,24 +64,41 @@ const TreeComponent = () => {
     localStorage.setItem('expandedNodes', JSON.stringify(expandedNodes));
   }, [expandedNodes]);
 
-  const renderTree = (nodes) => (
+  const MyTreeItem = ({ label, icon: Icon, fontSize, ...props }) => (
     <TreeItem
+      label={
+        <Typography style={{ fontSize, display: 'flex', alignItems: 'center' }}>
+          {Icon && <Icon style={{ marginRight: '5px' }} />}
+          {label}
+        </Typography>
+      }
+      {...props}
+      style={{ marginTop: '2px' }} // Ajusta el padding izquierdo según tus necesidades
+    />
+  );
+
+
+  const renderTree = (nodes) => (
+    <MyTreeItem
       key={nodes.id}
       nodeId={nodes.id.toString()}
       label={nodes.tabName.toLowerCase()}
-      
+      icon={nodes.tabChildren && expandedNodes.includes(nodes.id.toString()) ? FolderNew : FolderOpen}
+      fontSize="14px"
       onClick={() => {
-        if (!nodes.tabChildren || nodes.tabChildren.length === 0) {
+        if (!nodes.tabChildren || nodes.tabChildren.length === 0  ) {
           handleNodeClick(nodes.routeName);
         }
       }}
     >
-      {Array.isArray(nodes.tabChildren) ? nodes.tabChildren.map(renderTree) : null}
-    </TreeItem>
+      {Array.isArray(nodes.tabChildren)
+        ? nodes.tabChildren.map((node) => renderTree(node))
+        : <MyTreeItem key={nodes.id} label={nodes.tabName} icon={FolderOpen} fontSize="14px" />}
+    </MyTreeItem>
   );
 
   const handleNodeClick = (routeName) => {
-    
+
     //console.log('Abrir URL:', routeName);
     window.location.href = routeName;
   };
@@ -84,16 +108,15 @@ const TreeComponent = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: '60px' }}> {/* Ajusta el valor de marginBottom según tus necesidades */}
       <TreeView
-        defaultCollapseIcon={<ExpandMoreIcon />}
-        defaultExpandIcon={<ChevronRightIcon />}
         expanded={expandedNodes}
         onNodeToggle={handleNodeToggle}
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpandIcon={<ChevronRightIcon />}
       >
         {_directorio.map(renderTree)}
       </TreeView>
-
     </div>
   );
 };
