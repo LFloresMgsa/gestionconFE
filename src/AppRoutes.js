@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect  } from 'react-router-dom';
 
 import Dashboard from './views/Dashboard';
 
@@ -14,35 +14,19 @@ const AppRoutes = (props) => {
   const { accessToken, currentUser } = props;
   
 
-
-  // const plocation = useLocation();
-
-  // useEffect(() => {
-  //   const currentUrl = window.location.href;
-  //   const pathIndex = currentUrl.indexOf('path=');
-  //   if (pathIndex !== -1) {
-  //     const pathValue = currentUrl.substring(pathIndex + 5); // 5 es la longitud de 'path='
-  //     setCurrentPage(pathValue);
-  //   }
-
-  //   //console.log(plocation.pathname);
-  //   //console.log(currentPage);    
-
-  //   if (plocation.pathname !== '/categoria?path=' + currentPage && plocation.pathname != '/categoria' && plocation.pathname !='/' ) {
-  //    // window.location.reload();
-  //   }
-
-  // }, [plocation]);
-
-
   return (
     <Switch>
 
       <Route exact path="/" render={(route) => <Dashboard {...props} {...route} />}>
-        {/* <Redirect to="/inicio" /> */}
+        <Redirect to="/gestcon" /> 
       </Route>
 
+      <Route
+        path="/gestcon"
+        render={(route) => <Dashboard {...props} {...route} />}
+      />
 
+      
       <Route
         path="/categoria"
         render={(route) => <Categorias {...props} {...route} pCategory={""} pTipo="publico" />}
@@ -68,10 +52,7 @@ const AppRoutes = (props) => {
         path="/mantenimiento"
         render={(route) => <Soporte {...props} {...route} />}
       />
-      <Route
-        path="/inicio"
-        render={(route) => <Dashboard {...props} {...route} />}
-      />
+
       <Route
         path="/gerencia"
         render={(route) => <Categorias {...props} {...route} pCategory="" pTipo="publico" />}
