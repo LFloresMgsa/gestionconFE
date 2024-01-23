@@ -11,7 +11,6 @@ import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-
 import FolderOpen from '@mui/icons-material/FolderOpenOutlined';
 import FolderNew from '@mui/icons-material/CreateNewFolderOutlined';
 
@@ -64,29 +63,32 @@ const TreeComponent = () => {
     localStorage.setItem('expandedNodes', JSON.stringify(expandedNodes));
   }, [expandedNodes]);
 
-  const MyTreeItem = ({ label, icon: Icon, fontSize, ...props }) => (
-    <TreeItem
-      label={
-        <Typography style={{ fontSize, display: 'flex', alignItems: 'center' }}>
-          {Icon && <Icon style={{ marginRight: '5px' }} />}
-          {label}
-        </Typography>
-      }
-      {...props}
-      style={{ marginTop: '2px' }} // Ajusta el padding izquierdo según tus necesidades
-    />
-  );
-
+  const MyTreeItem = ({ label, icon: Icon, fontSize, ...props }) => {
+    return (
+      <TreeItem
+        label={
+          <Typography style={{ fontSize, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+            {Icon && <Icon style={{ marginRight: '5px' }} />}
+            {label}
+          </Typography>
+        }
+        {...props}
+        style={{
+          marginTop: '1px',
+        }}
+      />
+    );
+  };
 
   const renderTree = (nodes) => (
     <MyTreeItem
       key={nodes.id}
       nodeId={nodes.id.toString()}
       label={nodes.tabName.toLowerCase()}
-      icon={nodes.tabChildren && expandedNodes.includes(nodes.id.toString()) ? FolderNew : FolderOpen}
+      icon={nodes.tabChildren && expandedNodes.includes(nodes.id.toString()) ? FolderOpen : FolderOpen}
       fontSize="14px"
       onClick={() => {
-        if (!nodes.tabChildren || nodes.tabChildren.length === 0  ) {
+        if (!nodes.tabChildren || nodes.tabChildren.length === 0) {
           handleNodeClick(nodes.routeName);
         }
       }}

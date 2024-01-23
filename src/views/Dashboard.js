@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
-import fondo from '../imagenes/pantallausuariomgsa.jpg';
+import fondo from '../imagenes/SGContenido.jpg';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled as muiStyled, css } from '@mui/system';
 import Divider from '@mui/material/Divider';
+import '../css/imagenfondo.css'
 const WhiteBackground = styled.div`
   position: fixed;
   top: 0;
@@ -30,7 +31,7 @@ const StyledLoadingCircle = styled.div`
 
 const StyledImage = styled.img`
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   object-fit: cover; // O ajusta según tus necesidades (cover, contain, etc.)
 `;
 
@@ -68,7 +69,7 @@ const FooterRoot = muiStyled('footer')(
       flex-direction: column;
       align-items: center;
       -webkit-box-align: start;
-      margin: 7px;
+      margin: -7px;
     }
 
     .MuiDivider-wrapperVertical {
@@ -105,17 +106,13 @@ const Dashboard = () => {
 
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ height: '80vh', display: 'flex', alignItems: 'center' }}>
-      <CssBaseline />
-      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <StyledImageContainer>
-        <StyledImage src={fondo} alt="" />
-        </StyledImageContainer>
-        <WhiteBackground loading={loading.toString()} />
-        {loading && <StyledLoadingCircle />} {/* Muestra el LoadingCircle solo cuando loading es true */}
-        <div>{/* Contenido adicional */}</div>
-      </Box>
-      <FooterRoot>
+    <>
+          <div className="container" >
+            <div className="image-container">
+              <img className="centered-image" src={fondo} alt="campeonato" />
+            </div>
+          </div>
+          <FooterRoot >
         <div></div>
         <Divider />
         <div>
@@ -123,8 +120,10 @@ const Dashboard = () => {
           <div></div>
         </div>
       </FooterRoot>
-
-    </Container>
+          <div >
+            
+          </div>
+    </>
   );
 };
 

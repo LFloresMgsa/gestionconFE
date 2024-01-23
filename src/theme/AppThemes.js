@@ -130,7 +130,7 @@ const appThemes = {
       nsDangerColor: {
         main: 'black',
         hover: 'black',
-        contrastText: '#ffffff',
+        contrastText: '#8b0000',
       },
       nsTableRowUpload: {
         main: '#6b6e6e',
@@ -142,7 +142,7 @@ const appThemes = {
         main: '',
       },
       nsTableRowHoverBG: {
-        main: '#424242',
+        main: '#8b0000',
       },
       nsStickDivBG: {
         main: '#303030',
@@ -273,9 +273,9 @@ const appThemes = {
         main: '#E53935',
       },
       btnNeutral: {
-        main: '#263238',
-        contrastText: '#fff',
-        hover: '#19252a',
+        main: '#8b0000',
+        contrastText: '#8b0000',
+        hover: '#8b0000',
       },
       nsLeftMenuTextColor: 'black',
       nsAppBG: {
@@ -294,9 +294,9 @@ const appThemes = {
         main: '',
       },
       nsDangerColor: {
-        main: '#C62828',
-        hover: '#8c1c1c',
-        contrastText: '#ffffff',
+        main: '#8b0000',
+        hover: '#8b0000',
+        contrastText: '#8b0000',
       },
       nsTableRowUpload: {
         main: '#6b6e6e',
@@ -309,7 +309,7 @@ const appThemes = {
         tabColor: '#333f44',
       },
       nsTableRowHoverBG: {
-        main: '#13131c52',
+        main: '#8b0000',
       },
       nsStickDivBG: {
         main: '#263238',
@@ -452,9 +452,9 @@ const appThemes = {
         main: '#379aeb',
       },
       btnNeutral: {
-        main: '#0000000a',
-        hover: '#e7e7e7',
-        contrastText: '#5f5f5f',
+        main: '#8b0000',
+        hover: '#8b0000',
+        contrastText: '#8b0000',
       },
       nsAppBG: {
         main: '',
@@ -486,7 +486,7 @@ const appThemes = {
         tabColor: '#f5f5f5',
       },
       nsTableRowHoverBG: {
-        main: '#e0e0e0a6',
+        main: '#8b0000',
       },
       nsTableRowBorder: {
         main: '#8b0000',

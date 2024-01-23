@@ -104,7 +104,7 @@ const DashboardCard = styled(Card)(
       cursor: pointer;
       text-decoration: none;
       :hover {
-        text-decoration: underline;
+        background-color: #8b0000;
       }
     }
 

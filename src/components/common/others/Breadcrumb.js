@@ -102,7 +102,7 @@ const StyledBreadcrumb = styled('ul')(
         }
 
         &:hover {
-          background-color: #1f6fb3;
+          background-color: #8b0000;
 
           &:before {
             border-color: #1f6fb3;

@@ -99,9 +99,11 @@ const LoadFiles = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [urlActual, setUrlActual] = useState('');
+  const [titulo, setTitulo] = useState('');
 
 
   const itemsPerPage = 10;
+
   useEffect(() => {
 
     //---------------------------------
@@ -115,6 +117,9 @@ const LoadFiles = (props) => {
     const pathValue = urlParams.get('path');
 
     setUrlActual(pathValue);
+
+    const ultimoDirectorio = obtenerUltimoDirectorio(queryString);
+    setTitulo(ultimoDirectorio.toUpperCase());
     //---------------------------------
 
 
@@ -122,6 +127,20 @@ const LoadFiles = (props) => {
 
 
     setSelectedCategory(category);
+
+    function obtenerUltimoDirectorio(url) {
+      // Obtener el valor del parámetro 'path' de la URL
+      const queryParams = new URLSearchParams(url.split('?')[1]);
+      const path = queryParams.get('path');
+    
+      // Separar el path en partes utilizando el carácter '\'
+      const partesPath = path.split('\\');
+    
+      // Obtener el último valor del array resultante
+      const ultimoDirectorio = partesPath.pop();
+    
+      return ultimoDirectorio;
+    }
 
     const fetchDocumentosData = async () => {
       try {
@@ -241,7 +260,7 @@ const LoadFiles = (props) => {
           fontWeight="bold"  // Pone el texto en negrita
           gutterBottom
         >
-          ARCHIVOS
+          {titulo}
         </Typography>
         <Typography
           variant="h6"
