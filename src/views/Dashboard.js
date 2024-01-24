@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import LoadingCircle from './LoadingCircle'; // Ajusta la ruta según la ubicación real del componente
-import fondo from '../imagenes/SGContenido.jpg';
+import fondo from '../imagenes/SGContenido.jpg' ;
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
