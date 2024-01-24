@@ -190,7 +190,7 @@ const Login = () => {
 										style={{ padding: 0, minWidth: 0 }}
 										disableRipple
 									>
-										{showPassword ? <VisibilityOff /> : <Visibility />}
+										{showPassword ? <Visibility /> : <VisibilityOff />}
 									</Button>
 								),
 							}}
