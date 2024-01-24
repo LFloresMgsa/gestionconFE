@@ -29,12 +29,9 @@ build
 *.docx
 *.pptx
 *.xlsx
-*.jpg
-*.png
-*.bmp
 *.zip
 *.pdf
-*.jpeg
+
 website-user-passwords.json
 deploy/NS_WebApps/*
 
