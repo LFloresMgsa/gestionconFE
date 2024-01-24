@@ -242,7 +242,7 @@ const LoadFiles = (props) => {
   };
 
   return (
-    <div>
+    <div style={{marginTop:'35px'}}>
       <Paper
         sx={{
           p: 2,
